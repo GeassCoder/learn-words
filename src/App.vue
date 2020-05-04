@@ -1,12 +1,28 @@
 <template>
   <div id="app">
+    <!-- TODO: bind message or get from store? -->
+    <toaster msg="'ahaha'"></toaster>
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/list">List</router-link> |
+      <router-link to="/test">Test</router-link>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+import toaster from '@/components/toaster.vue'
+
+export default {
+  name: 'app',
+  components: {
+    toaster
+  }
+}
+
+</script>
 
 <style lang="scss">
 #app {
