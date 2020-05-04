@@ -10,10 +10,3 @@ new Vue({
   store,
   render: function (h) { return h(app) }
 }).$mount('#app')
-
-// TODO: try normal way of creating vue instance
-// new Vue({
-//   el: '#app',
-//   router,
-//   store
-// });
