@@ -1,12 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import utility from '@/services/utility'
 
 Vue.use(Vuex)
-
-// TODO: refactor
-function sameArrayValues (arr1, arr2) {
-  return JSON.stringify(arr1.sort()) === JSON.stringify(arr2.sort())
-}
 
 export default new Vuex.Store({
   state: {
@@ -17,6 +13,10 @@ export default new Vuex.Store({
   mutations: {
     updateSelectedLanguages (state, selectedLanguages) {
       state.selectedLanguages = selectedLanguages
+    },
+
+    updateToasterMessage (state, message) {
+      state.toasterMessage = message
     }
   },
   actions: {
@@ -27,11 +27,20 @@ export default new Vuex.Store({
       }
 
       // if no change, bail out
-      if (sameArrayValues(state.selectedLanguages, selectedLanguages)) {
+      if (utility.sameArrayValues(state.selectedLanguages, selectedLanguages)) {
         return
       }
 
       commit('updateSelectedLanguages', selectedLanguages)
+    },
+
+    updateToasterMessage ({ commit }, message) {
+      commit('updateToasterMessage', message)
+
+      // reset in 1s
+      setTimeout(() => {
+        commit('updateToasterMessage', '')
+      }, 1000)
     }
   },
   modules: {
