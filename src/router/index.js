@@ -6,8 +6,6 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    // TODO: can be removed??
-    // name: 'Home',
     component: function () {
       // route level code-splitting
       // generates a separate chunk (home.[hash].js) which can be lazy-loaded.
@@ -17,8 +15,6 @@ const routes = [
   {
     // TODO: need :word??
     path: '/list/:word',
-    // TODO: can be removed??
-    // name: 'List',
     props: true,
     component: function () {
       return import(/* webpackChunkName: "list" */ '../views/list.vue')
@@ -26,8 +22,6 @@ const routes = [
   },
   {
     path: '/test',
-    // TODO: can be removed??
-    // name: 'Test',
     props: true,
     component: function () {
       return import(/* webpackChunkName: "list" */ '../views/test.vue')
