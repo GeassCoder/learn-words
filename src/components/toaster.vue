@@ -10,7 +10,7 @@ export default {
   name: 'toaster',
   methods: {
     close () {
-      $store.dispatch('updateToasterMessage', '')
+      this.$store.dispatch('updateToasterMessage', '')
     }
   }
 }
