@@ -18,6 +18,7 @@ export default {
 
 <style scoped lang="scss">
 .toaster {
-  background-color: 
+  color: $error;
+  background-color: $error-bg;
 }
 </style>
