@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <toaster></toaster>
+    <!-- TODO: create a nav component? -->
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/list">List</router-link> |
