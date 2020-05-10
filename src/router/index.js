@@ -14,7 +14,8 @@ const routes = [
   },
   {
     // TODO: need :word??
-    path: '/list/:word',
+    // path: '/list/:word',
+    path: '/list',
     props: true,
     component: function () {
       return import(/* webpackChunkName: "list" */ '../views/list.vue')

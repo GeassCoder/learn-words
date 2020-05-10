@@ -17,20 +17,15 @@ export default {
   data () {
     return {
       languages: LANGUAGES,
-      selected: []
+      selected: this.$store.state.selectedLanguages
     }
   },
   methods: {
     onChange () {
-      let normalized
+      // normalize local copy
+      const normalized = this.selected.includes('All') ? ['All'] : this.selected.sort()
 
-      // normalize
-      if (this.selected.includes('All')) {
-        normalized = this.languages.filter(one => one !== 'All').sort()
-      } else {
-        normalized = this.selected.sort()
-      }
-
+      // update global copy
       this.$store.dispatch('updateSelectedLanguages', normalized)
     }
   }

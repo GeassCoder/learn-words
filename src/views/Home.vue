@@ -16,6 +16,11 @@ export default {
   name: 'home',
   components: {
     WordDetails
+  },
+  methods: {
+    search () {
+      // TODO
+    }
   }
 }
 </script>

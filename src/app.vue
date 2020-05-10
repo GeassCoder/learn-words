@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <toaster></toaster>
-    <language-selector></language-selector>
-    <!-- TODO: create a nav component? How to style router-link? -->
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/list">List</router-link> |
@@ -15,13 +13,11 @@
 <script>
 // @ is an alias to /src
 import Toaster from '@/components/toaster.vue'
-import LanguageSelector from '@/components/language-selector.vue'
 
 export default {
   name: 'app',
   components: {
-    Toaster,
-    LanguageSelector
+    Toaster
   }
 }
 </script>
