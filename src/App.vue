@@ -18,10 +18,6 @@ export default {
   name: 'app',
   components: {
     toaster
-  },
-  // TODO: remove
-  created: function () {
-    this.$store.dispatch('updateToasterMessage', 'haaaaaaaaahaaaaaaa')
   }
 }
 
@@ -32,20 +28,20 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // TODO:
-  // text-align: center;
-  color: #2c3e50;
+  // color: #2c3e50;
+  box-sizing: border-box;
 }
 
 #nav {
   padding: 30px;
 
   a {
+    // color: #2c3e50;
     font-weight: bold;
-    color: #2c3e50;
+    color: $black;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: $info;
     }
   }
 }

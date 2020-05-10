@@ -37,10 +37,10 @@ export default new Vuex.Store({
     updateToasterMessage ({ commit }, message) {
       commit('updateToasterMessage', message)
 
-      // reset in 1s
+      // reset in 10s
       setTimeout(() => {
         commit('updateToasterMessage', '')
-      }, 1000)
+      }, 10000)
     }
   },
   modules: {
