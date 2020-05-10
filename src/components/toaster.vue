@@ -1,6 +1,6 @@
 <template>
 <transition name="fade">
-  <div class="toaster" v-if="message">
+  <div id="toaster" v-if="message">
     <button @click="close" title="close"> &#215; </button>
     <p>{{ message }}</p>
   </div>
@@ -24,8 +24,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.toaster {
-  position: relative;
+#toaster {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
   color: $error;
   background-color: $error-bg;
   text-align: center;
@@ -34,12 +36,13 @@ export default {
 
   button {
     position: absolute;
+    z-index: 2;
     top: 10px;
     right: 20px;
     font-size: 24px;
     color: $white;
     border: transparent;
-    background-color: inherit;
+    background-color: transparent;
   }
 }
 

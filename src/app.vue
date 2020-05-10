@@ -24,15 +24,19 @@ export default {
 </script>
 
 <style lang="scss">
+* {
+  box-sizing: border-box;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box;
+  font-size: 20px;
 }
 
 #nav {
-  padding: 30px;
+  padding: 15px 30px 30px;
   text-align: center;
 
   a {
