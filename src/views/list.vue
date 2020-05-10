@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <!-- TODO: create a nav component? How to style router-link? -->
+    <!-- TODO: figure out how shared components are bundled? -->
     <language-selector></language-selector>
 
     <h1>This is the list page</h1>

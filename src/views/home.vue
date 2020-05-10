@@ -1,18 +1,25 @@
 <template>
   <div id="home-view">
     <div class="search-box">
-      <input type="text" v-model="searchValue" placeholder="Search a word or phrase">
-      <button role="button" class="clear" @click="clear"> &#215; </button>
+      <input type="text" v-model="searchText" placeholder="Search a word or phrase">
+      <button role="button" class="clear" @click="searchText=''"> &#215; </button>
       <button role="button" class="search" @click="search">search</button>
-      <!-- <span role="button" class="search-icon" @click="search"> &#128269; </span> -->
     </div>
-    <!-- TODO?? -->
-    <word-details></word-details>
+    <div v-if="searchResult" class="search-results">
+      <!-- TODO: fuzzy search -->
+      <p>Do you mean ... ?</p>
+      <word-details word=""></word-details>
+    </div>
+    <div v-else>
+      {{ searchText }} can't find it
+    </div>
+    <!--  -->
   </div>
 </template>
 
 <script>
 import WordDetails from '@/components/word-details.vue'
+import Fuse from 'fuse.js'
 
 export default {
   name: 'home',
@@ -21,15 +28,56 @@ export default {
   },
   data () {
     return {
-      searchValue: ''
+      searchText: '',
+      searchResult: null
     }
   },
   methods: {
     search () {
-      // TODO
-    },
-    clear () {
-      // TODO
+      // TODO: do fuzzy search
+
+      const list = [
+        {
+          title: 'Old Man\'s War',
+          author: {
+            firstName: 'John',
+            lastName: 'Scalzi'
+          }
+        },
+        {
+          title: 'The Lock Artist',
+          author: {
+            firstName: 'Steve',
+            lastName: 'Hamilton'
+          }
+        }]
+
+      const options = {
+        // isCaseSensitive: false,
+        includeScore: true,
+        // shouldSort: true,
+        includeMatches: true,
+        findAllMatches: true,
+        // minMatchCharLength: 1,
+        // location: 0,
+        threshold: 0.4,
+        distance: 30,
+        // useExtendedSearch: false,
+        keys: [
+          'title',
+          'author.firstName'
+        ]
+      }
+
+      const fuse = new Fuse(list, options)
+
+      // Change the pattern
+      const pattern = 'lock'
+
+      console.log(1111, fuse.search(pattern))
+      // return {
+      //   text: 'composite'
+      // }
     }
   }
 }
