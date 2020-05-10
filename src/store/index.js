@@ -21,11 +21,6 @@ export default new Vuex.Store({
   },
   actions: {
     updateSelectedLanguages ({ commit, state }, selectedLanguages) {
-      // normalize
-      if (selectedLanguages.includes('All')) {
-        selectedLanguages = ['All']
-      }
-
       // if no change, bail out
       if (utility.sameArrayValues(state.selectedLanguages, selectedLanguages)) {
         return
@@ -34,12 +29,14 @@ export default new Vuex.Store({
       commit('updateSelectedLanguages', selectedLanguages)
     },
 
-    updateToasterMessage ({ commit }, message) {
+    updateToasterMessage ({ commit, state }, message) {
       commit('updateToasterMessage', message)
 
       // reset in 10s
       setTimeout(() => {
-        commit('updateToasterMessage', '')
+        if (state.toasterMessage) {
+          commit('updateToasterMessage', '')
+        }
       }, 10000)
     }
   },
