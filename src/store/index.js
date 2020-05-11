@@ -11,10 +11,36 @@ export default new Vuex.Store({
     words: [
       // TODO: remove later
       {
-        text: 'composite'
+        text: 'composite',
+        meaning: 'bla bla bla',
+        notes: [
+          'first note bla bla',
+          'second note bla bla'
+        ],
+        examples: [
+          'first example',
+          'second example'
+        ],
+        meta: {
+          creationTime: 'mm/dd/yyyy',
+          lastSearchTime: null,
+          lastTestTime: null,
+          lastTestResult: null // 'pass'/'fail'/null
+        }
       },
       {
-        text: 'artistic'
+        text: 'artistic',
+        meaning: 'bla bla bla',
+        notes: [],
+        examples: [
+          'first example'
+        ],
+        meta: {
+          creationTime: 'mm/dd/yyyy',
+          lastSearchTime: null,
+          lastTestTime: null,
+          lastTestResult: null // 'pass'/'fail'/null
+        }
       }
     ]
   },
