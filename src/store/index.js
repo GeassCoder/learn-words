@@ -8,7 +8,15 @@ export default new Vuex.Store({
   state: {
     selectedLanguages: [],
     toasterMessage: '',
-    words: []
+    words: [
+      // TODO: remove later
+      {
+        text: 'composite'
+      },
+      {
+        text: 'artistic'
+      }
+    ]
   },
   mutations: {
     updateSelectedLanguages (state, selectedLanguages) {
