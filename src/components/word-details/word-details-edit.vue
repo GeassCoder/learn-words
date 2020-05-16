@@ -26,29 +26,20 @@
       </li>
     </ul>
   </label>
-  <label>
-    <strong>Meta: </strong>
-    <ul>
-      <li v-for="(value, key) in wordModel.meta" :key="key">
-        <strong>{{key}}: </strong>
-        <input :value="value" @input="wordModel.meta[key] = $event.target.value">
-      </li>
-    </ul>
-  </label>
   <button type="submit" @submit.prevent="onSave">Save</button>
   <button type="button" @click="onCancel">Cancel</button>
 </form>
 </template>
 
 <script>
+import utility from '@/services/utility'
+
 export default {
   name: 'word-details-edit',
   data () {
-    // TODO: check if this works, is this.word assigned at this point?
-    console.log(1111, this.wordInfo)
     return {
       // separate copy of data model for editting
-      wordModel: JSON.stringify(this.wordInfo)
+      wordModel: utility.deepCopy(this.wordInfo)
     }
   },
   props: {
@@ -56,9 +47,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-  created () {
-    // TODO:
   },
   methods: {
     onSave () {

@@ -4,7 +4,7 @@
       Can't find results... You can either <google-link :toSearch="searchedText"></google-link>
       or add it to the list.
     </p>
-    <word-details-edit v-if="isEditing" :word="wordModel"
+    <word-details-edit v-if="isEditing" :wordInfo="wordInfo"
       @word-edit-saved="addToListSaved"
       @word-edit-canceled="addToListCanceled">
     </word-details-edit>
@@ -30,13 +30,14 @@ export default {
   },
   data () {
     return {
-      isEditing: false
+      isEditing: false,
+      wordInfo: {}
     }
   },
   methods: {
     onAddToList () {
       this.isEditing = true
-      this.wordModel = {
+      this.wordInfo = {
         text: this.searchedText,
         meaning: '',
         notes: [],
