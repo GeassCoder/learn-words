@@ -11,6 +11,7 @@ export default new Vuex.Store({
     words: [
       // TODO: remove later
       {
+        id: '12345',
         text: 'composite',
         meaning: 'bla bla bla',
         notes: [
@@ -23,12 +24,13 @@ export default new Vuex.Store({
         ],
         meta: {
           creationTime: 'mm/dd/yyyy',
-          lastSearchTime: null,
-          lastTestTime: null,
-          lastTestResult: null // 'pass'/'fail'/null
+          lastSearchTime: 'N/A',
+          lastTestTime: 'N/A',
+          lastTestResult: 'N/A' // 'pass'/'fail'/'N/A'
         }
       },
       {
+        id: '12346',
         text: 'artistic',
         meaning: 'bla bla bla',
         notes: [],
@@ -37,9 +39,9 @@ export default new Vuex.Store({
         ],
         meta: {
           creationTime: 'mm/dd/yyyy',
-          lastSearchTime: null,
-          lastTestTime: null,
-          lastTestResult: null // 'pass'/'fail'/null
+          lastSearchTime: 'N/A',
+          lastTestTime: 'N/A',
+          lastTestResult: 'N/A' // 'pass'/'fail'/'N/A'
         }
       }
     ]
@@ -51,6 +53,22 @@ export default new Vuex.Store({
 
     updateToasterMessage (state, message) {
       state.toasterMessage = message
+    },
+
+    updateWord (state, updatedWord) {
+      const index = state.words.findIndex(word => word.id === updatedWord.id)
+      if (index === -1) {
+        console.error("Updated word is not in the data store's word list, this should not happen")
+        // TODO: consider update toaster message, how should we do it?
+        return
+      }
+
+      // TODO: try the other syntax
+      Vue.$set(state.words, index, updatedWord)
+      // TODO: try the other syntax
+      // state.words.splice(index, 1, updatedWord)
+      // TODO: test if it's really necessary here,
+      // state.words[index] = updatedWord
     }
   },
   actions: {
@@ -72,6 +90,11 @@ export default new Vuex.Store({
           commit('updateToasterMessage', '')
         }
       }, 10000)
+    },
+
+    updateWord ({ commit }, updatedWord) {
+      // TODO: figure out the shortcut
+      commit('updateWord', updatedWord)
     }
   },
   // ??

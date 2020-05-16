@@ -3,18 +3,21 @@
     <p class="title">
       <span>{{ word.text }}</span>
       <button @click="toggleDetails">{{ detailsShown ? 'Hide' : 'Show' }} Details</button>
+      <google-link :toSearch="word.text">google '{{word.text}}'</google-link>
     </p>
-    <word-details v-if="detailsShown" :word="word"></word-details>
+    <word-details v-show="detailsShown" :word="word"></word-details>
   </div>
 </template>
 
 <script>
-import WordDetails from '@/components/word-details.vue'
+import WordDetails from '@/components/word-details/index.vue'
+import GoogleLink from '@/components/google-link.vue'
 
 export default {
   name: 'search-results-item',
   components: {
-    WordDetails
+    WordDetails,
+    GoogleLink
   },
   data () {
     return {
@@ -22,7 +25,10 @@ export default {
     }
   },
   props: {
-    word: Object
+    word: {
+      type: Object,
+      required: true
+    }
   },
   computed: {
     resultsLength () {

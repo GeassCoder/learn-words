@@ -1,9 +1,14 @@
 <template>
   <div class="search">
-    <search-box @search-results-updated="updateSearchResults"></search-box>
-    <template v-if="hasSearched">
-      <search-results :results="searchResults" v-if="searchResults.length"></search-results>
-      <no-search-results v-else></no-search-results>
+    <search-box @search-updated="onSearchUpdate"></search-box>
+    <template v-if="searchedText">
+      <search-results v-if="searchResults.length"
+        :searchedText="searchedText"
+        :results="searchResults">
+      </search-results>
+      <no-search-results v-else
+        :searchedText="searchedText"
+      ></no-search-results>
     </template>
   </div>
 </template>
@@ -22,12 +27,13 @@ export default {
   },
   data () {
     return {
-      hasSearched: false,
+      searchedText: '',
       searchResults: []
     }
   },
   methods: {
-    updateSearchResults (searchResults) {
+    onSearchUpdate ({ searchedText, searchResults }) {
+      this.searchedText = searchedText
       this.searchResults = searchResults
       this.hasSearched = true
     }

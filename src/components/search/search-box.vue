@@ -34,7 +34,10 @@ export default {
 
       const results = fuse.search(searchText)
 
-      this.$emit('search-results-updated', results.map(result => result.item))
+      this.$emit('search-updated', {
+        searchedText: searchText,
+        searchResults: results.map(result => result.item)
+      })
     }
   }
 }
