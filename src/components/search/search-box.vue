@@ -4,6 +4,7 @@
         placeholder="Search a word or phrase">
       <button class="clear" @click="searchText=''"> &#215; </button>
       <button class="search info-button" @click="search">Search</button>
+      <p v-if="showError" class="error">Must type 3 chars at least!</p>
     </div>
 </template>
 
@@ -14,17 +15,25 @@ export default {
   name: 'search-box',
   data () {
     return {
-      searchText: ''
+      searchText: '',
+      showError: false
     }
   },
   methods: {
     search () {
-      // bail out on blank search text
+      // get rid of padding spaces
       const searchText = this.searchText.trim()
 
-      if (!searchText) {
+      // must type 3 chars at least
+      if (searchText.length < 3) {
+        this.showError = true
+        this.$emit('search-updated', {
+          searchError: true
+        })
         return
       }
+
+      this.showError = false
 
       const fuse = new Fuse(this.$store.state.words, {
         threshold: 0.4,
@@ -69,6 +78,10 @@ export default {
     color: $info;
     font-size: 20px;
     font-weight: bold;
+  }
+
+  .error {
+    color: $error;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <search-box @search-updated="onSearchUpdate"></search-box>
-    <template v-if="searchedText">
+    <template v-if="searchedText && !searchError">
       <search-results v-if="searchResults.length"
         :searchedText="searchedText"
         :results="searchResults">
@@ -28,14 +28,15 @@ export default {
   data () {
     return {
       searchedText: '',
-      searchResults: []
+      searchResults: [],
+      searchError: false
     }
   },
   methods: {
-    onSearchUpdate ({ searchedText, searchResults }) {
+    onSearchUpdate ({ searchedText, searchResults, searchError }) {
+      this.searchError = searchError
       this.searchedText = searchedText
       this.searchResults = searchResults
-      this.hasSearched = true
     }
   }
 }
