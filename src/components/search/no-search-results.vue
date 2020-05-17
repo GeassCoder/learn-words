@@ -31,27 +31,31 @@ export default {
   data () {
     return {
       isEditing: false,
-      wordInfo: {}
+      wordInfo: {
+        text: ''
+      }
+    }
+  },
+  watch: {
+    searchedText (newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.isEditing = false
+      }
     }
   },
   methods: {
     onAddToList () {
       this.isEditing = true
-      this.wordInfo = {
-        text: this.searchedText,
-        meaning: '',
-        notes: [],
-        examples: []
-      }
+      this.wordInfo.text = this.searchedText
     },
-    addToListSaved () {
+    addToListSaved (newWord) {
       // TODO: make ajax call
       // TODO: set toaster message?
+      // this.$store.dispatch('updateToasterMessage', 'New word added successfully.')
+      // this.$store.dispatch('updateToasterMessage', 'Error: new Word cannot be added.')
       this.isEditing = false
     },
     addToListCanceled () {
-      // TODO
-      // TODO: set toaster message?
       this.isEditing = false
     }
   }

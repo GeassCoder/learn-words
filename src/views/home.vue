@@ -14,9 +14,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-#home-view {
-  padding: 0 2% 2%;
-}
-</style>

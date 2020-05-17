@@ -3,7 +3,7 @@
       <input type="text" v-model="searchText" @keyup.enter="search"
         placeholder="Search a word or phrase">
       <button class="clear" @click="searchText=''"> &#215; </button>
-      <button class="search" @click="search">Search</button>
+      <button class="search info-button" @click="search">Search</button>
     </div>
 </template>
 

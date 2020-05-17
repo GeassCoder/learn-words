@@ -2,12 +2,14 @@
   <div id="app">
     <toaster></toaster>
     <!-- TODO: create a nav component? How to style router-link? -->
-    <div id="nav">
+    <nav id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/list">List</router-link> |
       <router-link to="/test">Test</router-link>
-    </div>
-    <router-view/>
+    </nav>
+    <main id="main">
+      <router-view/>
+    </main>
   </div>
 </template>
 
@@ -33,6 +35,26 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 20px;
+
+  ul {
+    padding-left: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  .info-button {
+    height: 40px;
+    background-color: transparent;
+    color: $info;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  input {
+    height: 40px;
+  }
 }
 
 #nav {
@@ -48,5 +70,10 @@ export default {
       color: $info;
     }
   }
+}
+
+#main {
+  margin: 0 auto;
+  max-width: 960px;
 }
 </style>

@@ -4,5 +4,8 @@ export default {
   },
   deepCopy (obj) {
     return JSON.parse(JSON.stringify(obj))
+  },
+  isNonEmptyArray (arr) {
+    return Array.isArray(arr) && arr.length
   }
 }

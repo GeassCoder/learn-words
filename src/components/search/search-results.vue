@@ -50,11 +50,5 @@ export default {
       font-weight: bold;
     }
   }
-
-  .results-list {
-    li {
-      list-style: none;
-    }
-  }
 }
 </style>
