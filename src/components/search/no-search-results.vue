@@ -8,7 +8,7 @@
       @word-edit-saved="addToListSaved"
       @word-edit-canceled="addToListCanceled">
     </word-details-edit>
-    <button v-else @click="onAddToList">Add To List</button>
+    <button class="info-button" v-else @click="onAddToList">Add To List</button>
   </div>
 </template>
 
@@ -71,15 +71,6 @@ export default {
       color: $info;
       font-style: italic;
     }
-  }
-
-  button {
-    color: $info;
-    min-width: 100px;
-    height: 30px;
-    font-size: 20px;
-    background-color: transparent;
-    margin-right: 50px;
   }
 }
 </style>

@@ -50,6 +50,11 @@ export default {
     color: $info;
     font-size: 20px;
     font-weight: bold;
+
+    &[disabled] {
+      color: $disabled;
+      background-color: $disabled-bg;
+    }
   }
 
   input {
