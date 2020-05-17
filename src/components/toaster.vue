@@ -1,6 +1,6 @@
 <template>
 <transition name="fade">
-  <div id="toaster" v-if="message">
+  <div id="toaster" v-if="message" :class="type">
     <button @click="close" title="close"> &#215; </button>
     <p>{{ message }}</p>
   </div>
@@ -12,12 +12,17 @@ export default {
   name: 'toaster',
   computed: {
     message () {
-      return this.$store.state.toasterMessage
+      return this.$store.state.toaster.message
+    },
+    type () {
+      return this.$store.state.toaster.type
     }
   },
   methods: {
     close () {
-      this.$store.dispatch('updateToasterMessage', '')
+      this.$store.dispatch('updateToasterMessage', {
+        message: ''
+      })
     }
   }
 }
@@ -25,14 +30,27 @@ export default {
 
 <style scoped lang="scss">
 #toaster {
-  position: absolute;
+  position: fixed;
   width: 100%;
   z-index: 1;
-  color: $error;
-  background-color: $error-bg;
   text-align: center;
   font-weight: bold;
   padding: 10px;
+
+  &.success {
+    background-color: $success-bg;
+    color: $success;
+  }
+
+  &.error {
+    background-color: $error-bg;
+    color: $error;
+  }
+
+  &.warning {
+    background-color: $warning-bg;
+    color: $warning;
+  }
 
   button {
     position: absolute;

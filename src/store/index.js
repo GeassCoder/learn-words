@@ -7,7 +7,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     selectedLanguages: [],
-    toasterMessage: '',
+    toaster: {
+      message: '',
+      type: undefined // {'success', 'error', 'warning', undefined}
+    },
     words: [
       // TODO: remove later
       {
@@ -51,8 +54,12 @@ export default new Vuex.Store({
       state.selectedLanguages = selectedLanguages
     },
 
-    updateToasterMessage (state, message) {
-      state.toasterMessage = message
+    updateToasterMessage (state, toasterInfo) {
+      Object.assign(state.toaster, toasterInfo)
+
+      if (!['success', 'error', 'warning'].includes(toasterInfo.type)) {
+        state.toaster.type = 'error'
+      }
     },
 
     updateWord (state, updatedWord) {
@@ -81,13 +88,15 @@ export default new Vuex.Store({
       commit('updateSelectedLanguages', selectedLanguages)
     },
 
-    updateToasterMessage ({ commit, state }, message) {
-      commit('updateToasterMessage', message)
+    updateToasterMessage ({ commit, state }, toasterInfo) {
+      commit('updateToasterMessage', toasterInfo)
 
       // reset in 10s
       setTimeout(() => {
-        if (state.toasterMessage) {
-          commit('updateToasterMessage', '')
+        if (state.toaster.message) {
+          commit('updateToasterMessage', {
+            message: ''
+          })
         }
       }, 10000)
     },

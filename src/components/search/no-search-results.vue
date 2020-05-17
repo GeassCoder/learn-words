@@ -50,9 +50,17 @@ export default {
     },
     addToListSaved (newWord) {
       // TODO: make ajax call
-      // TODO: set toaster message?
-      // this.$store.dispatch('updateToasterMessage', 'New word added successfully.')
-      // this.$store.dispatch('updateToasterMessage', 'Error: new Word cannot be added.')
+      // TODO: show error toaster message on error
+      // this.$store.dispatch('updateToasterMessage', {
+      //   message: 'Error: new Word cannot be added.',
+      //   type: 'error'
+      // })
+
+      this.$store.dispatch('updateToasterMessage', {
+        message: 'New word added successfully.',
+        type: 'success'
+      })
+
       this.isEditing = false
     },
     addToListCanceled () {
