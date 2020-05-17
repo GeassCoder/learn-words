@@ -45,12 +45,22 @@
 import utility from '@/services/utility'
 
 function createWordModel (wordInfo) {
-  return {
-    ...utility.deepCopy(wordInfo),
-    meaning: wordInfo.meaning || '',
-    notes: utility.isNonEmptyArray(wordInfo.notes) ? wordInfo.notes : [''],
-    examples: utility.isNonEmptyArray(wordInfo.examples) ? wordInfo.examples : ['']
+  const result = utility.deepCopy(wordInfo)
+
+  // set defaults
+  if (!result.meaning) {
+    result.meaning = ''
   }
+
+  if (!utility.isNonEmptyArray(result.notes)) {
+    result.notes = ['']
+  }
+
+  if (!utility.isNonEmptyArray(result.examples)) {
+    result.examples = ['']
+  }
+
+  return result
 }
 
 function cleanUp (data) {
