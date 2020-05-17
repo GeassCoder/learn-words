@@ -9,7 +9,7 @@ export default new Vuex.Store({
     selectedLanguages: [],
     toaster: {
       message: '',
-      type: undefined // {'success', 'error', 'warning', undefined}
+      type: 'error'
     },
     words: [
       // TODO: remove later
