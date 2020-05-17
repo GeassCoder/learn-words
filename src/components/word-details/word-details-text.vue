@@ -13,7 +13,7 @@
         <li v-for="example in word.examples" :key="example">{{ example}}</li>
       </ul>
     </p>
-    <button v-if="!showMeta" @click="showMeta = true">Show Meta Data</button>
+    <button v-if="!showMeta" class="info-button" @click="showMeta = true">Show Meta Data</button>
     <p v-if="showMeta">
       <strong>Meta: </strong>
       <ul>
@@ -41,5 +41,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// ??
+.word-details-text {
+  button {
+    height: 30px;
+    margin-bottom: 15px;
+  }
+}
 </style>

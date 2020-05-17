@@ -2,7 +2,9 @@
   <div class="search-results-item">
     <p class="title">
       <span>{{ word.text }}</span>
-      <button @click="toggleDetails">{{ detailsShown ? 'Hide' : 'Show' }} Details</button>
+      <button class="info-button" @click="toggleDetails">
+        {{ detailsShown ? 'Hide' : 'Show' }} Details
+      </button>
       <google-link :toSearch="word.text">google '{{word.text}}'</google-link>
     </p>
     <word-details v-show="detailsShown" :word="word"></word-details>
@@ -46,7 +48,10 @@ export default {
 <style scoped lang="scss">
 .search-results-item {
   .title {
-    // TODO
+    button {
+      height: 30px;
+      margin: 0 15px;
+    }
   }
 }
 </style>

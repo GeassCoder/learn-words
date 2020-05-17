@@ -10,7 +10,7 @@
     <!-- text mode -->
     <template v-else>
       <word-details-text :word="word"></word-details-text>
-      <button @click="onEdit">Edit</button>
+      <button class="info-button" @click="onEdit">Edit</button>
     </template>
   </div>
 </template>
@@ -59,5 +59,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// ??
+.word-details {
+  button {
+    height: 30px;
+  }
+
+  word-details-text {
+    margin-bottom: 20px;
+  }
+}
 </style>
