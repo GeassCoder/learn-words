@@ -1,11 +1,11 @@
 <template>
-    <div class="search-box">
-      <input type="text" v-model="searchText" @keyup.enter="search"
-        placeholder="Search a word or phrase">
-      <button class="clear" @click="searchText=''"> &#215; </button>
-      <button class="info-button" @click="search">Search</button>
-      <p v-if="showError" class="error">Must type 3 chars at least!</p>
-    </div>
+  <div class="search-box">
+    <input type="text" v-model="searchText" @keyup.enter="search"
+      placeholder="Search a word or phrase">
+    <button class="clear" @click="searchText=''"> &#215; </button>
+    <button class="info-button" @click="search">Search</button>
+    <p v-if="showError" class="error">Must type 3 chars at least!</p>
+  </div>
 </template>
 
 <script>
