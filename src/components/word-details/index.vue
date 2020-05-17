@@ -59,6 +59,9 @@ export default {
         type: 'success'
       })
 
+      // has to do this so that search-results-item can get updated
+      this.$emit('word-details-updated', updatedWord)
+
       this.isEditing = false
     }
   }

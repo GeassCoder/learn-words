@@ -43,39 +43,13 @@
 
 <script>
 import utility from '@/services/utility'
-
-function createWordModel (wordInfo) {
-  const result = utility.deepCopy(wordInfo)
-
-  // set defaults
-  if (!result.meaning) {
-    result.meaning = ''
-  }
-
-  if (!utility.isNonEmptyArray(result.notes)) {
-    result.notes = ['']
-  }
-
-  if (!utility.isNonEmptyArray(result.examples)) {
-    result.examples = ['']
-  }
-
-  return result
-}
-
-function cleanUp (data) {
-  // get rid of empty entries in notes and examples array
-  data.notes = data.notes.filter(note => note)
-  data.examples = data.examples.filter(example => example)
-
-  return data
-}
+import wordDetailsService from './word-details-service.js'
 
 export default {
   name: 'word-details-edit',
   data () {
     return {
-      wordModel: createWordModel(this.wordInfo),
+      wordModel: wordDetailsService.createWordModel(this.wordInfo),
       showError: false
     }
   },
@@ -91,7 +65,7 @@ export default {
   },
   methods: {
     onSave () {
-      this.$emit('word-edit-saved', cleanUp(this.wordModel))
+      this.$emit('word-edit-saved', wordDetailsService.cleanUp(this.wordModel))
     },
     onCancel () {
       this.$emit('word-edit-canceled')
@@ -103,10 +77,10 @@ export default {
       this.wordModel.examples.push('')
     },
     deleteNote (index) {
-      this.wordModel.notes.splice(index, 1)
+      utility.deleteByIndex(this.wordModel.notes, index)
     },
     deleteExample (index) {
-      this.wordModel.examples.splice(index, 1)
+      utility.deleteByIndex(this.wordModel.examples, index)
     },
     onBlur ($event) {
       this.showError = !$event.target.value.trim()

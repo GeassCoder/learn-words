@@ -7,5 +7,8 @@ export default {
   },
   isNonEmptyArray (arr) {
     return Array.isArray(arr) && arr.length
+  },
+  deleteByIndex (arr, index) {
+    arr.splice(index, 1)
   }
 }

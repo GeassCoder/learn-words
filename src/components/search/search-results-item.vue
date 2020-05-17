@@ -1,13 +1,15 @@
 <template>
   <div class="search-results-item">
     <p class="title">
-      <span>{{ word.text }}</span>
+      <span>{{ wordModel.text }}</span>
       <button class="info-button" @click="toggleDetails">
         {{ detailsShown ? 'Hide' : 'Show' }} Details
       </button>
-      <google-link :toSearch="word.text">google '{{word.text}}'</google-link>
+      <google-link :toSearch="wordModel.text">google '{{wordModel.text}}'</google-link>
     </p>
-    <word-details v-show="detailsShown" :word="word"></word-details>
+    <word-details v-show="detailsShown" :word="wordModel"
+      @word-details-updated="onWordDetailsUpdated">
+    </word-details>
   </div>
 </template>
 
@@ -23,7 +25,11 @@ export default {
   },
   data () {
     return {
-      detailsShown: false
+      detailsShown: false,
+      // need a separate var from prop because word details can be updated
+      // the search results array and this.word are created from fuse.search() and so
+      // they are not automatically synced up with the global data store
+      wordModel: this.word
     }
   },
   props: {
@@ -40,6 +46,9 @@ export default {
   methods: {
     toggleDetails () {
       this.detailsShown = !this.detailsShown
+    },
+    onWordDetailsUpdated (updatedWord) {
+      this.wordModel = updatedWord
     }
   }
 }

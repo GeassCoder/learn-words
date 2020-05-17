@@ -56,7 +56,8 @@ export default {
       //   type: 'error'
       // })
 
-      // TODO: update global data store
+      // TODO:
+      // Note: returnedNewWord must have a server-generated id
       // this.$store.dispatch('addWord', returnedNewWord)
 
       this.$store.dispatch('updateToasterMessage', {
