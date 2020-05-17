@@ -56,6 +56,9 @@ export default {
       //   type: 'error'
       // })
 
+      // TODO: update global data store
+      // this.$store.dispatch('addWord', returnedNewWord)
+
       this.$store.dispatch('updateToasterMessage', {
         message: 'New word added successfully.',
         type: 'success'
@@ -71,14 +74,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.no-search-results {
-  .results-stats {
-    color: $error;
+.results-stats {
+  color: $error;
 
-    .search-text {
-      color: $info;
-      font-style: italic;
-    }
+  .search-text {
+    color: $info;
+    font-style: italic;
   }
 }
 </style>

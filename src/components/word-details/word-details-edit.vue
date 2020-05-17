@@ -152,12 +152,12 @@ input {
   width: 100%;
 }
 
-button.info-button[type="submit"] {
-  margin-right: 20px;
-}
-
 button {
   height: 30px;
+
+  &.info-button[type="submit"] {
+    margin-right: 20px;
+  }
 }
 
 .error {

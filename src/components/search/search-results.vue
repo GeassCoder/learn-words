@@ -42,13 +42,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.search-results {
-  .results-stats {
-    color: $success;
+.results-stats {
+  color: $success;
 
-    .results-length {
-      font-weight: bold;
-    }
+  .results-length {
+    font-weight: bold;
   }
 }
 </style>

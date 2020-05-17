@@ -41,10 +41,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.word-details-text {
-  button {
-    height: 30px;
-    margin-bottom: 15px;
-  }
+button {
+  height: 30px;
+  margin-bottom: 15px;
 }
 </style>

@@ -45,27 +45,28 @@ export default {
     },
     onEditSaved (updatedWord) {
       // TODO: make ajax call
+      // TODO: show error toaster message on error
+      // this.$store.dispatch('updateToasterMessage', {
+      //   message: 'Error: new Word cannot be added.',
+      //   type: 'error'
+      // })
 
       // TODO: update global data store
       this.$store.dispatch('updateWord', updatedWord)
-      // .then(function onSuccess () {
-      // switch to text view, and show success message
-      // })
 
-      // TODO: update local data, shouldn't need to do this...
+      this.$store.dispatch('updateToasterMessage', {
+        message: 'Word updated successfully.',
+        type: 'success'
+      })
+
+      this.isEditing = false
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.word-details {
-  button {
-    height: 30px;
-  }
-
-  word-details-text {
-    margin-bottom: 20px;
-  }
+button {
+  height: 30px;
 }
 </style>

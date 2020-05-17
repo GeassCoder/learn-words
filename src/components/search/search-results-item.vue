@@ -46,12 +46,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.search-results-item {
-  .title {
-    button {
-      height: 30px;
-      margin: 0 15px;
-    }
+.title {
+  button {
+    height: 30px;
+    margin: 0 15px;
   }
 }
 </style>
