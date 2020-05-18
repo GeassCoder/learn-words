@@ -2,7 +2,7 @@
   <div class="word-details">
     <!-- editing mode -->
     <template v-if="isEditing">
-      <word-details-edit :wordInfo="word"
+      <word-details-edit :word-info="word"
         @word-edit-saved="onEditSaved"
         @word-edit-canceled="onEditCanceled">
       </word-details-edit>
@@ -10,7 +10,7 @@
     <!-- text mode -->
     <template v-else>
       <word-details-text :word="word"></word-details-text>
-      <button class="info-button" @click="onEdit">Edit</button>
+      <info-button class="small" @click="onEdit">Edit</info-button>
     </template>
   </div>
 </template>
@@ -18,12 +18,14 @@
 <script>
 import WordDetailsText from './word-details-text.vue'
 import WordDetailsEdit from './word-details-edit.vue'
+import InfoButton from '@/components/info-button.vue'
 
 export default {
   name: 'word-details',
   components: {
     WordDetailsText,
-    WordDetailsEdit
+    WordDetailsEdit,
+    InfoButton
   },
   data () {
     return {
@@ -67,9 +69,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-button {
-  height: 30px;
-}
-</style>

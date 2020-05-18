@@ -3,11 +3,11 @@
     <search-box @search-updated="onSearchUpdate"></search-box>
     <template v-if="searchedText && !searchError">
       <search-results v-if="searchResults.length"
-        :searchedText="searchedText"
+        :searched-text="searchedText"
         :results="searchResults">
       </search-results>
       <no-search-results v-else
-        :searchedText="searchedText"
+        :searched-text="searchedText"
       ></no-search-results>
     </template>
   </div>

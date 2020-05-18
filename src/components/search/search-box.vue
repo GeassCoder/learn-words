@@ -1,18 +1,22 @@
 <template>
   <div class="search-box">
-    <input type="text" v-model="searchText" @keyup.enter="search"
+    <input v-model.trim="searchText" @keyup.enter="search"
       placeholder="Search a word or phrase">
     <button class="clear" @click="searchText=''"> &#215; </button>
-    <button class="info-button" @click="search">Search</button>
+    <info-button @click="search">Search</info-button>
     <p v-if="showError" class="error">Must type 3 chars at least!</p>
   </div>
 </template>
 
 <script>
 import Fuse from 'fuse.js'
+import InfoButton from '@/components/info-button.vue'
 
 export default {
   name: 'search-box',
+  components: {
+    InfoButton
+  },
   data () {
     return {
       searchText: '',
@@ -21,8 +25,8 @@ export default {
   },
   methods: {
     search () {
-      // get rid of padding spaces
-      const searchText = this.searchText.trim()
+      // save some typings
+      const searchText = this.searchText
 
       // must type 3 chars at least
       if (searchText.length < 3) {
@@ -60,7 +64,6 @@ export default {
 input {
   width: 75%;
   padding: 7px 30px 7px 7px;
-  font-size: 20px;
 }
 
 button.clear {

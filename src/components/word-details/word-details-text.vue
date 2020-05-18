@@ -13,7 +13,7 @@
         <li v-for="example in word.examples" :key="example">{{ example}}</li>
       </ul>
     </p>
-    <button v-if="!showMeta" class="info-button" @click="showMeta = true">Show Meta Data</button>
+    <info-button class="small show-meta" v-if="!showMeta" @click="showMeta = true">Show Meta Data</info-button>
     <p v-if="showMeta">
       <strong>Meta: </strong>
       <ul>
@@ -24,8 +24,13 @@
 </template>
 
 <script>
+import InfoButton from '@/components/info-button.vue'
+
 export default {
   name: 'word-details-text',
+  components: {
+    InfoButton
+  },
   data () {
     return {
       showMeta: false
@@ -41,8 +46,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-button {
-  height: 30px;
+button.show-meta {
   margin-bottom: 15px;
 }
 </style>

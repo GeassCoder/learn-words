@@ -44,21 +44,13 @@ export default {
     }
   }
 
-  .info-button {
+  input:not([type]) {
     height: 40px;
-    background-color: transparent;
-    color: $info;
     font-size: 20px;
-    font-weight: bold;
 
-    &[disabled] {
-      color: $disabled;
-      background-color: $disabled-bg;
+    &.small {
+      height: 30px;
     }
-  }
-
-  input {
-    height: 40px;
   }
 }
 

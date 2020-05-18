@@ -1,26 +1,28 @@
 <template>
   <div class="no-search-results">
     <p class="results-stats">
-      Can't find results... You can either <google-link :toSearch="searchedText"></google-link>
+      Can't find results... You can either <google-link :to-search="searchedText"></google-link>
       or add it to the list.
     </p>
-    <word-details-edit v-if="isEditing" :wordInfo="wordInfo"
+    <word-details-edit v-if="isEditing" :word-info="wordInfo"
       @word-edit-saved="addToListSaved"
       @word-edit-canceled="addToListCanceled">
     </word-details-edit>
-    <button class="info-button" v-else @click="onAddToList">Add To List</button>
+    <info-button v-else @click="onAddToList">Add To List</info-button>
   </div>
 </template>
 
 <script>
 import GoogleLink from '@/components/google-link.vue'
 import WordDetailsEdit from '@/components/word-details/word-details-edit.vue'
+import InfoButton from '@/components/info-button.vue'
 
 export default {
   name: 'no-search-results',
   components: {
     GoogleLink,
-    WordDetailsEdit
+    WordDetailsEdit,
+    InfoButton
   },
   props: {
     searchedText: {

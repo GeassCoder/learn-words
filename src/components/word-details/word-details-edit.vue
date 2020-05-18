@@ -3,7 +3,7 @@
     <label :class="{error: showError}">
       <strong>Text: *</strong>
       <span v-if="showError"> this field is required!</span>
-      <input v-model="wordModel.text" @blur="onBlur">
+      <input v-model.trim="wordModel.text" @blur="onBlur">
     </label>
     <label>
       <strong>Meaning: </strong>
@@ -19,10 +19,10 @@
           <!-- Note: can't use v-model directly as assigning to local variables won't update data models -->
           <!-- TODO: check if there is a better way to do this -->
           <input :value="note" @input="wordModel.notes[index] = $event.target.value">
-          <button class="info-button" type="button" @click="deleteNote(index)">Delete</button>
+          <info-button @click="deleteNote(index)">Delete</info-button>
         </li>
       </ul>
-      <button class="info-button" type="button" @click="addNote">Add</button>
+      <info-button class="small" @click="addNote">Add</info-button>
     </fieldset>
     <fieldset>
       <legend>
@@ -31,22 +31,26 @@
       <ul>
         <li v-for="(example, index) in wordModel.examples" :key="index">
           <input :value="example" @input="wordModel.examples[index] = $event.target.value">
-          <button class="info-button" type="button" @click="deleteExample(index)">Delete</button>
+          <info-button @click="deleteExample(index)">Delete</info-button>
         </li>
       </ul>
-      <button class="info-button" type="button" @click="addExample">Add</button>
+      <info-button class="small" @click="addExample">Add</info-button>
     </fieldset>
-    <button class="info-button" type="submit" :disabled="showError">Save</button>
-    <button class="info-button" type="button" @click="onCancel">Cancel</button>
+    <info-button type="submit" :disabled="showError">Save</info-button>
+    <info-button @click="onCancel">Cancel</info-button>
   </form>
 </template>
 
 <script>
 import utility from '@/services/utility'
 import wordDetailsService from './word-details-service.js'
+import InfoButton from '@/components/info-button.vue'
 
 export default {
   name: 'word-details-edit',
+  components: {
+    InfoButton
+  },
   data () {
     return {
       wordModel: wordDetailsService.createWordModel(this.wordInfo),
@@ -83,7 +87,7 @@ export default {
       utility.deleteByIndex(this.wordModel.examples, index)
     },
     onBlur ($event) {
-      this.showError = !$event.target.value.trim()
+      this.showError = !$event.target.value
     }
   }
 }
@@ -122,16 +126,11 @@ strong {
 
 input {
   display: block;
-  font-size: 20px;
   width: 100%;
 }
 
-button {
-  height: 30px;
-
-  &.info-button[type="submit"] {
-    margin-right: 20px;
-  }
+button[type="submit"] {
+  margin-right: 20px;
 }
 
 .error {

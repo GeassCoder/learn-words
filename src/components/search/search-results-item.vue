@@ -2,10 +2,10 @@
   <div class="search-results-item">
     <p class="title">
       <span>{{ wordModel.text }}</span>
-      <button class="info-button" @click="toggleDetails">
+      <info-button class="small toggle-details" @click="toggleDetails">
         {{ detailsShown ? 'Hide' : 'Show' }} Details
-      </button>
-      <google-link :toSearch="wordModel.text">google '{{wordModel.text}}'</google-link>
+      </info-button>
+      <google-link :to-search="wordModel.text">google '{{wordModel.text}}'</google-link>
     </p>
     <word-details v-show="detailsShown" :word="wordModel"
       @word-details-updated="onWordDetailsUpdated">
@@ -16,12 +16,14 @@
 <script>
 import WordDetails from '@/components/word-details/index.vue'
 import GoogleLink from '@/components/google-link.vue'
+import InfoButton from '@/components/info-button.vue'
 
 export default {
   name: 'search-results-item',
   components: {
     WordDetails,
-    GoogleLink
+    GoogleLink,
+    InfoButton
   },
   data () {
     return {
@@ -56,8 +58,7 @@ export default {
 
 <style scoped lang="scss">
 .title {
-  button {
-    height: 30px;
+  button.toggle-details {
     margin: 0 15px;
   }
 }
