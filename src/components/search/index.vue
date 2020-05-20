@@ -43,7 +43,7 @@ export default {
   watch: {
     updatedWord (newValue, oldValue) {
       if (newValue !== oldValue) {
-        this.searchResults = utility.replaceById(this.searchResults, newValue)
+        utility.replaceById(this.searchResults, newValue)
       }
     }
   },

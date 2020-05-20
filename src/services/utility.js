@@ -8,16 +8,17 @@ export default {
   isNonEmptyArray (arr) {
     return Array.isArray(arr) && arr.length
   },
+  // intentionally making these impure as we can take advantage of vue's array reactivity
   deleteByIndex (arr, index) {
     arr.splice(index, 1)
   },
-  replaceById (arr, obj, isDebug) {
-    if (isDebug && !arr.find(item => item.id === obj.id)) {
-      console.error("Can't find array item with matching id!")
-      return
+  replaceByIndex (arr, index, item) {
+    arr.splice(index, 1, item)
+  },
+  replaceById (arr, obj) {
+    const index = arr.findIndex(item => item.id === obj.id)
+    if (index > -1) {
+      this.replaceByIndex(arr, index, obj)
     }
-
-    // TODO: try different algorithm
-    return arr.map(item => item.id === obj.id ? obj : item)
   }
 }

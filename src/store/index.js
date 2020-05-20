@@ -65,14 +65,7 @@ export default new Vuex.Store({
     },
 
     updateWord (state, updatedWord) {
-      // TODO: try the other syntax
-      // Vue.set(state.words, index, updatedWord)
-      // TODO: try the other syntax
-      // state.words.splice(index, 1, updatedWord)
-      // TODO: test if it's really necessary here,
-      // state.words[index] = updatedWord
-
-      state.words = utility.replaceById(state.words, updatedWord)
+      utility.replaceById(state.words, updatedWord)
 
       state.updatedWord = updatedWord
     },
