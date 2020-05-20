@@ -7,8 +7,8 @@
         :results="searchResults">
       </search-results>
       <no-search-results v-else
-        :searched-text="searchedText"
-      ></no-search-results>
+        :searched-text="searchedText">
+      </no-search-results>
     </template>
   </div>
 </template>
@@ -17,6 +17,8 @@
 import SearchBox from './search-box.vue'
 import SearchResults from './search-results.vue'
 import NoSearchResults from './no-search-results.vue'
+import Fuse from 'fuse.js'
+import utility from '@/services/utility'
 
 export default {
   name: 'search',
@@ -32,11 +34,35 @@ export default {
       searchError: false
     }
   },
+  // TODO: check if there is a better way to do this
+  computed: {
+    updatedWord () {
+      return this.$store.state.updatedWord
+    }
+  },
+  watch: {
+    updatedWord (newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.searchResults = utility.replaceById(this.searchResults, newValue)
+      }
+    }
+  },
   methods: {
-    onSearchUpdate ({ searchedText, searchResults, searchError }) {
-      this.searchError = searchError
+    onSearchUpdate ({ searchedText, searchError }) {
       this.searchedText = searchedText
-      this.searchResults = searchResults
+      this.searchError = searchError
+
+      if (!searchError) {
+        const fuse = new Fuse(this.$store.state.words, {
+          threshold: 0.4,
+          distance: 30,
+          keys: ['text']
+        })
+
+        this.searchResults = fuse.search(searchedText).map(
+          result => result.item
+        )
+      }
     }
   }
 }

@@ -5,10 +5,10 @@
       or add it to the list.
     </p>
     <word-details-edit v-if="isEditing" :word-info="wordInfo"
-      @word-edit-saved="addToListSaved"
+      @word-edit-saved="addToList"
       @word-edit-canceled="addToListCanceled">
     </word-details-edit>
-    <info-button v-else @click="onAddToList">Add To List</info-button>
+    <info-button v-else @click="showEditForm">Add To List</info-button>
   </div>
 </template>
 
@@ -46,11 +46,11 @@ export default {
     }
   },
   methods: {
-    onAddToList () {
+    showEditForm () {
       this.isEditing = true
       this.wordInfo.text = this.searchedText
     },
-    addToListSaved (newWord) {
+    addToList (newWord) {
       // TODO: make ajax call
       // TODO: show error toaster message on error
       // this.$store.dispatch('updateToasterMessage', {

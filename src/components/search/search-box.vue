@@ -4,12 +4,11 @@
       placeholder="Search a word or phrase">
     <button class="clear" @click="searchText=''"> &#215; </button>
     <info-button @click="search">Search</info-button>
-    <p v-if="showError" class="error">Must type 3 chars at least!</p>
+    <p v-if="searchError" class="error">Must type 3 chars at least!</p>
   </div>
 </template>
 
 <script>
-import Fuse from 'fuse.js'
 import InfoButton from '@/components/info-button.vue'
 
 export default {
@@ -20,36 +19,17 @@ export default {
   data () {
     return {
       searchText: '',
-      showError: false
+      searchError: false
     }
   },
   methods: {
     search () {
-      // save some typings
-      const searchText = this.searchText
-
       // must type 3 chars at least
-      if (searchText.length < 3) {
-        this.showError = true
-        this.$emit('search-updated', {
-          searchError: true
-        })
-        return
-      }
-
-      this.showError = false
-
-      const fuse = new Fuse(this.$store.state.words, {
-        threshold: 0.4,
-        distance: 30,
-        keys: ['text']
-      })
-
-      const results = fuse.search(searchText)
+      this.searchError = this.searchText.length < 3
 
       this.$emit('search-updated', {
-        searchedText: searchText,
-        searchResults: results.map(result => result.item)
+        searchedText: this.searchText,
+        searchError: this.searchError
       })
     }
   }

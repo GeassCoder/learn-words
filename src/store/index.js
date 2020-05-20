@@ -11,6 +11,8 @@ export default new Vuex.Store({
       message: '',
       type: 'error'
     },
+    // have to have this as custom events from a component cannot propagate to the grand parent.
+    updatedWord: null,
     words: [
       // TODO: remove later
       {
@@ -63,19 +65,16 @@ export default new Vuex.Store({
     },
 
     updateWord (state, updatedWord) {
-      const index = state.words.findIndex(word => word.id === updatedWord.id)
-      if (index === -1) {
-        console.error("Updated word is not in the data store's word list, this should not happen")
-        // TODO: consider update toaster message, how should we do it?
-        return
-      }
-
       // TODO: try the other syntax
       // Vue.set(state.words, index, updatedWord)
       // TODO: try the other syntax
       // state.words.splice(index, 1, updatedWord)
       // TODO: test if it's really necessary here,
-      state.words[index] = updatedWord
+      // state.words[index] = updatedWord
+
+      state.words = utility.replaceById(state.words, updatedWord)
+
+      state.updatedWord = updatedWord
     },
 
     addWord (state, newWord) {

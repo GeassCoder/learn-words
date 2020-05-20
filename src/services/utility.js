@@ -10,5 +10,14 @@ export default {
   },
   deleteByIndex (arr, index) {
     arr.splice(index, 1)
+  },
+  replaceById (arr, obj, isDebug) {
+    if (isDebug && !arr.find(item => item.id === obj.id)) {
+      console.error("Can't find array item with matching id!")
+      return
+    }
+
+    // TODO: try different algorithm
+    return arr.map(item => item.id === obj.id ? obj : item)
   }
 }

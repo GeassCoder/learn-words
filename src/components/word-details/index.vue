@@ -53,16 +53,12 @@ export default {
       //   type: 'error'
       // })
 
-      // TODO: update global data store
       this.$store.dispatch('updateWord', updatedWord)
 
       this.$store.dispatch('updateToasterMessage', {
         message: 'Word updated successfully.',
         type: 'success'
       })
-
-      // has to do this so that search-results-item can get updated
-      this.$emit('word-details-updated', updatedWord)
 
       this.isEditing = false
     }
