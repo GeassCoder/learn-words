@@ -4,12 +4,12 @@
     <label :class="{error: showError}">
       <strong>Text: *</strong>
       <span v-if="showError"> this field is required!</span>
-      <input v-model.trim="wordModel.text" @blur="onBlur">
+      <input ref="textField" v-model.trim="wordModel.text" @blur="onBlur">
     </label>
     <!-- meaning -->
     <label>
       <strong>Meaning: </strong>
-      <input v-model="wordModel.meaning">
+      <input v-model.trim="wordModel.meaning">
     </label>
     <!-- notes -->
     <fieldset>
@@ -18,7 +18,7 @@
         <li v-for="(note, index) in wordModel.notes" :key="index">
           <!-- Note: can't use v-model directly as assigning to local variables won't update data models -->
           <!-- TODO: check if there is a better way to do this -->
-          <input :value="note" @input="wordModel.notes[index] = $event.target.value">
+          <input :value="note" @input="wordModel.notes[index] = $event.target.value.trim()">
           <info-button @click="deleteNote(index)">Delete</info-button>
         </li>
       </ul>
@@ -29,7 +29,7 @@
       <legend><strong>Examples: </strong></legend>
       <ul>
         <li v-for="(example, index) in wordModel.examples" :key="index">
-          <input :value="example" @input="wordModel.examples[index] = $event.target.value">
+          <input :value="example" @input="wordModel.examples[index] = $event.target.value.trim()">
           <info-button @click="deleteExample(index)">Delete</info-button>
         </li>
       </ul>
@@ -65,6 +65,9 @@ export default {
         return 'text' in value
       }
     }
+  },
+  mounted () {
+    this.$nextTick(() => this.$refs.textField.focus())
   },
   methods: {
     onSave () {
