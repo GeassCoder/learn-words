@@ -1,19 +1,19 @@
 <template>
   <form class="word-details-edit" @submit.prevent="onSave">
+    <!-- text -->
     <label :class="{error: showError}">
       <strong>Text: *</strong>
       <span v-if="showError"> this field is required!</span>
       <input v-model.trim="wordModel.text" @blur="onBlur">
     </label>
+    <!-- meaning -->
     <label>
       <strong>Meaning: </strong>
       <input v-model="wordModel.meaning">
     </label>
-
+    <!-- notes -->
     <fieldset>
-      <legend>
-        <strong> Notes: </strong>
-      </legend>
+      <legend><strong> Notes: </strong></legend>
       <ul>
         <li v-for="(note, index) in wordModel.notes" :key="index">
           <!-- Note: can't use v-model directly as assigning to local variables won't update data models -->
@@ -24,10 +24,9 @@
       </ul>
       <info-button class="small" @click="addNote">Add</info-button>
     </fieldset>
+    <!-- examples -->
     <fieldset>
-      <legend>
-        <strong>Examples: </strong>
-      </legend>
+      <legend><strong>Examples: </strong></legend>
       <ul>
         <li v-for="(example, index) in wordModel.examples" :key="index">
           <input :value="example" @input="wordModel.examples[index] = $event.target.value">
