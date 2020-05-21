@@ -1,12 +1,11 @@
 <template>
   <div class="word-details">
     <!-- editing mode -->
-    <template v-if="isEditing">
-      <word-details-edit :word-info="word"
-        @word-edit-saved="onEditSaved"
-        @word-edit-canceled="onEditCanceled">
-      </word-details-edit>
-    </template>
+    <word-details-edit v-if="isEditing"
+      :word-info="word"
+      @word-edit-saved="onEditSaved"
+      @word-edit-canceled="onEditCanceled">
+    </word-details-edit>
     <!-- text mode -->
     <template v-else>
       <word-details-text :word="word"></word-details-text>

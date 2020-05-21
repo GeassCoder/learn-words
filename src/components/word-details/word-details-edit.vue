@@ -101,8 +101,6 @@ label {
 
 fieldset {
   margin-bottom: 20px;
-  border: none;
-  padding: 0;
 
   ul {
     margin: 0;
