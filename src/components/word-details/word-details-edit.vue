@@ -134,8 +134,6 @@ button[type="submit"] {
 }
 
 .error {
-  color: $error;
-
   input {
     border: 1px solid $error;
   }

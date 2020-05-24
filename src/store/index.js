@@ -29,10 +29,10 @@ export default new Vuex.Store({
           'second example'
         ],
         meta: {
-          creationTime: 'mm/dd/yyyy',
-          lastSearchTime: 'N/A',
-          lastTestTime: 'N/A',
-          lastTestResult: 'N/A' // 'pass'/'fail'/'N/A'
+          creationTime: 1234567890123,
+          lastShownTime: 1234567890123, // inited as creation time, updated on each test
+          lastTestResult: 'N/A', // 'pass'/'fail'/'N/A'
+          familiarity: 0 // 0-9
         }
       },
       {
@@ -44,10 +44,10 @@ export default new Vuex.Store({
           'first example'
         ],
         meta: {
-          creationTime: 'mm/dd/yyyy',
-          lastSearchTime: 'N/A',
-          lastTestTime: 'N/A',
-          lastTestResult: 'N/A' // 'pass'/'fail'/'N/A'
+          creationTime: 1234567890123,
+          lastShownTime: 1234567890123,
+          lastTestResult: 'pass', // 'pass'/'fail'/'N/A'
+          familiarity: 0 // 0-9
         }
       }
     ]

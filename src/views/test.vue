@@ -1,5 +1,5 @@
 <template>
-  <div class="test">
+  <div class="test-view">
     <!-- TODO: figure out how shared components are bundled? -->
     <language-selector></language-selector>
 
@@ -11,7 +11,6 @@
 import LanguageSelector from '@/components/language-selector.vue'
 
 export default {
-  name: 'test',
   components: {
     LanguageSelector
   }

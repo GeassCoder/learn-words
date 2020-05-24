@@ -44,7 +44,6 @@ export default {
 
   &.error {
     background-color: $error-bg;
-    color: $error;
   }
 
   &.warning {

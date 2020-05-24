@@ -52,6 +52,10 @@ export default {
       height: 30px;
     }
   }
+
+  .error {
+    color: $error;
+  }
 }
 
 #nav {

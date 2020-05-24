@@ -55,8 +55,4 @@ button.clear {
   border: transparent;
   font-size: 30px;
 }
-
-.error {
-  color: $error;
-}
 </style>
