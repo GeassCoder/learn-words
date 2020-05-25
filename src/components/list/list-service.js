@@ -33,6 +33,10 @@ export default {
   },
 
   applyFilters (list, filters) {
+    if (!filters) {
+      return list
+    }
+
     // save some typings
     const {
       failedInLastTest,

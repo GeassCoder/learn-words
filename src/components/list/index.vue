@@ -1,39 +1,55 @@
 <template>
   <div class="list">
     <!-- TODO: figure out how shared components are bundled? -->
-    <!-- TODO: make a tabs component -->
     <language-selector></language-selector>
-    <list-filters @filters-updated="onFiltersUpdated">
-    </list-filters>
-    <list-sorter @sorter-updated="onSorterUpdated">
-    </list-sorter>
+    <flyout>
+      <template v-slot:controls>
+        <info-button class="small toggle-filter" @click="onFiltersClick">
+          Filters
+        </info-button>
+        <info-button class="small" @click="onSortByClick">
+          Sort By
+        </info-button>
+      </template>
+      <template v-slot:container>
+        <list-filters v-if="showFilters" v-model="filters"
+          @input="showFilters = false" key="list-filters">
+        </list-filters>
+        <list-sorter v-if="showSorter" v-model="sort"
+          @input="showSorter = false" key="list-sorter">
+        </list-sorter>
+      </template>
+    </flyout>
     <!-- TODO: render the list using v-for -->
+    <br>
+    <br>
     {{list}}
   </div>
 </template>
 
 <script>
 import listService from './list-service.js'
+import InfoButton from '@/components/info-button.vue'
 import LanguageSelector from '@/components/language-selector.vue'
+import Flyout from '@/components/flyout.vue'
 import ListFilters from './list-filters.vue'
 import ListSorter from './list-sorter.vue'
 
 export default {
   name: 'list',
   components: {
+    InfoButton,
     LanguageSelector,
+    Flyout,
     ListFilters,
     ListSorter
   },
   data () {
     return {
-      filters: {
-        failedInLastTest: false,
-        familiarity: null,
-        creationTime: null,
-        lastShownTime: null
-      },
-      sort: ''
+      filters: null,
+      sort: '',
+      showFilters: false,
+      showSorter: false
     }
   },
   computed: {
@@ -47,12 +63,20 @@ export default {
     }
   },
   methods: {
-    onFiltersUpdated (filters) {
-      this.filters = filters
+    onFiltersClick () {
+      this.showFilters = !this.showFilters
+      this.showSorter = false
     },
-    onSorterUpdated (sort) {
-      this.sort = sort
+    onSortByClick () {
+      this.showSorter = !this.showSorter
+      this.showFilters = false
     }
   }
 }
 </script>
+
+<style scoped lang="scss">
+.toggle-filter {
+  margin-right: 20px;
+}
+</style>

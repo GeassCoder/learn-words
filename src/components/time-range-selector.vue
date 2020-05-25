@@ -1,8 +1,8 @@
 <template>
-  <fieldset>
-    <label>
-      <span>from</span>
-      <select :disabled="disabled" v-model="from" @change="onChange">
+  <fieldset class="time-range-selector">
+    <label class="date-selector">
+      <span class="label-text">from</span>
+      <select v-model="from" @change="onChange">
         <option value=""></option>
         <option v-for="option in fromOptions"
           :value="option"
@@ -12,9 +12,9 @@
         </option>
       </select>
     </label>
-    <label>
-      <span>to</span>
-      <select :disabled="disabled" v-model="to" @change="onChange">
+    <label class="date-selector">
+      <span class="label-text">to</span>
+      <select v-model="to" @change="onChange">
         <option value=""></option>
         <option v-for="option in toOptions"
           :value="option"
@@ -30,9 +30,6 @@
 <script>
 export default {
   name: 'time-range-selector',
-  model: {
-    event: 'time-range-updated'
-  },
   props: {
     value: {
       type: Object,
@@ -62,7 +59,7 @@ export default {
   },
   methods: {
     onChange () {
-      this.$emit('time-range-updated', {
+      this.$emit('input', {
         from: this.from,
         to: this.to,
         hasError: !this.from.text || !this.to.text
@@ -79,4 +76,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.time-range-selector {
+  border: none;
+
+  .date-selector {
+    margin-right: 20px;
+
+    .label-text {
+      margin-right: 5px;
+    }
+  }
+}
 </style>
