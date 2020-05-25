@@ -8,6 +8,7 @@
 import Search from '@/components/search/index.vue'
 
 export default {
+  name: 'home-view',
   components: {
     Search
   }

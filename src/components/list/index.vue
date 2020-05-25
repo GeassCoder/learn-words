@@ -46,7 +46,7 @@ export default {
   },
   data () {
     return {
-      filters: null,
+      filters: listService.getFiltersInit(),
       sort: '',
       showFilters: false,
       showSorter: false

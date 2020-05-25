@@ -32,6 +32,15 @@ export default {
     }
   },
 
+  getFiltersInit () {
+    return {
+      failedInLastTest: false,
+      familiarity: 9,
+      creationTime: this.getEmptyTimeModel(),
+      lastShownTime: this.getEmptyTimeModel()
+    }
+  },
+
   applyFilters (list, filters) {
     if (!filters) {
       return list

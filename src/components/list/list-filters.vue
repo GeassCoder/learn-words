@@ -53,29 +53,18 @@ export default {
   props: {
     value: {
       required: true,
-      validator (v) {
-        return v === null || Object.is(v)
+      // TODO: consider using json schema
+      validator (value) {
+        return value instanceof Object
       }
     }
   },
   data () {
-    const result = {
+    return {
       creationTimeOptions: listService.getTimeOptions(),
-      lastShownTimeOptions: listService.getTimeOptions()
+      lastShownTimeOptions: listService.getTimeOptions(),
+      ...this.value
     }
-
-    if (this.value === null) {
-      Object.assign(result, {
-        failedInLastTest: false,
-        familiarity: 9,
-        creationTime: listService.getEmptyTimeModel(),
-        lastShownTime: listService.getEmptyTimeModel()
-      })
-    } else {
-      Object.assign(result, this.value)
-    }
-
-    return result
   },
   computed: {
     hasError () {

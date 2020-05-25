@@ -62,7 +62,7 @@ export default {
       this.$emit('input', {
         from: this.from,
         to: this.to,
-        hasError: !this.from.text || !this.to.text
+        hasError: (this.from.text && !this.to.text) || (this.to.text && !this.from.text)
       })
     },
     fromOptionDisabled (option) {
