@@ -44,7 +44,7 @@ export default {
 <style scoped lang="scss">
 .google-link {
   display: block;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .results-stats {
