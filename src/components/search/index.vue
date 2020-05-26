@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <search-box @search-updated="onSearchUpdate"></search-box>
+    <search-box class="search-box" @search-updated="onSearchUpdate"></search-box>
     <template v-if="searchedText && !searchError">
       <search-results v-if="searchResults.length"
         :searched-text="searchedText"
@@ -67,3 +67,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.search-box {
+  margin-bottom: 10px;
+}
+</style>

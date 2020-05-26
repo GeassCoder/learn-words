@@ -1,26 +1,26 @@
 <template>
   <div class="search-results">
-    <google-link :to-search="searchedText">google '{{searchedText}}'</google-link>
+    <google-link class="google-link" :to-search="searchedText">google '{{searchedText}}'</google-link>
     <p class="results-stats">
       Found <span class="results-length"> {{ resultsLength }} </span>
       {{ resultsLength === 1 ? "result" : "results" }}
     </p>
-    <ul class="results-list">
+    <ul class="search-results">
       <li v-for="word in results" :key="word.id">
-        <search-results-item :word="word"></search-results-item>
+        <word :word="word"></word>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import SearchResultsItem from './search-results-item.vue'
+import Word from '@/components/word.vue'
 import GoogleLink from '@/components/google-link.vue'
 
 export default {
   name: 'search-results',
   components: {
-    SearchResultsItem,
+    Word,
     GoogleLink
   },
   props: {
@@ -42,11 +42,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.google-link {
+  display: block;
+  margin-top: 10px;
+}
+
 .results-stats {
   color: $success;
 
   .results-length {
     font-weight: bold;
+  }
+}
+
+.search-results {
+  li {
+    margin-bottom: 20px;
   }
 }
 </style>

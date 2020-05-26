@@ -30,32 +30,36 @@ export default {
   box-sizing: border-box;
 }
 
+ul {
+  padding-left: 0;
+
+  li {
+    list-style: none;
+  }
+}
+
+p {
+  margin: 0 0 10px 0;
+}
+
+input:not([type]) {
+  height: 40px;
+  font-size: 20px;
+
+  &.small {
+    height: 30px;
+  }
+}
+
+.error {
+  color: $error;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 20px;
-
-  ul {
-    padding-left: 0;
-
-    li {
-      list-style: none;
-    }
-  }
-
-  input:not([type]) {
-    height: 40px;
-    font-size: 20px;
-
-    &.small {
-      height: 30px;
-    }
-  }
-
-  .error {
-    color: $error;
-  }
 }
 
 #nav {

@@ -55,4 +55,8 @@ button.clear {
   border: transparent;
   font-size: 30px;
 }
+
+p.error {
+  margin-top: 10px;
+}
 </style>

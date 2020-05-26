@@ -32,7 +32,12 @@ export default {
 
 <style scoped lang="scss">
 .info-button {
-  background-color: transparent;
+  // We have to set border to override the default looking including
+  // the gradient background, setting 'background-color: white;' only
+  // does not work.
+  // https://css-tricks.com/overriding-default-button-styles/
+  border: 1px solid $info;
+  background-color: $white;
   color: $info;
   font-size: 20px;
   font-weight: bold;

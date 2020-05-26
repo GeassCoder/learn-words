@@ -20,10 +20,11 @@
         </list-sorter>
       </template>
     </flyout>
-    <!-- TODO: render the list using v-for -->
-    <br>
-    <br>
-    {{list}}
+    <ul class="word-list">
+      <li v-for="word in list" :key="word.id">
+        <word :word="word"></word>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -34,6 +35,7 @@ import LanguageSelector from '@/components/language-selector.vue'
 import Flyout from '@/components/flyout.vue'
 import ListFilters from './list-filters.vue'
 import ListSorter from './list-sorter.vue'
+import Word from '@/components/word.vue'
 
 export default {
   name: 'list',
@@ -42,7 +44,8 @@ export default {
     LanguageSelector,
     Flyout,
     ListFilters,
-    ListSorter
+    ListSorter,
+    Word
   },
   data () {
     return {
@@ -78,5 +81,11 @@ export default {
 <style scoped lang="scss">
 .toggle-filter {
   margin-right: 20px;
+}
+
+.word-list {
+  li {
+    margin-bottom: 20px;
+  }
 }
 </style>

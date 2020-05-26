@@ -1,5 +1,5 @@
 <template>
-  <div class="search-results-item">
+  <div class="word">
     <p class="title">
       <span>{{ word.text }}</span>
       <info-button class="small toggle-details" @click="toggleDetails">
@@ -7,7 +7,7 @@
       </info-button>
       <google-link :to-search="word.text">google '{{word.text}}'</google-link>
     </p>
-    <word-details v-show="showDetails" :word="word"></word-details>
+    <word-details class="word-details" v-show="showDetails" :word="word"></word-details>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ import GoogleLink from '@/components/google-link.vue'
 import InfoButton from '@/components/info-button.vue'
 
 export default {
-  name: 'search-results-item',
+  name: 'word',
   components: {
     WordDetails,
     GoogleLink,
@@ -48,9 +48,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.title {
-  button.toggle-details {
-    margin: 0 15px;
+.word {
+  .title {
+    background-color: $success-bg;
+    padding: 5px 10px;
+    margin-bottom: 0;
+
+    button.toggle-details {
+      margin: 0 15px;
+    }
+  }
+
+  .word-details {
+    padding: 20px;
+    border: 1px solid $success-bg;
+    border-top: transparent;
   }
 }
 </style>

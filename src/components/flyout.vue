@@ -19,7 +19,9 @@ export default {
 
 <style scoped lang="scss">
 .flyout-controls {
-  margin-bottom: 10px;
+  margin-bottom: 3px;
+  padding: 5px 10px;
+  background-color: $info;
 }
 
 .flyout-container {
