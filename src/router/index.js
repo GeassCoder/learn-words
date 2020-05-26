@@ -9,6 +9,7 @@ const routes = [
     component: function () {
       // route level code-splitting
       // generates a separate chunk (home-view.[hash].js) which can be lazy-loaded.
+      // TODO: check built bundles
       return import(/* webpackChunkName: "home-view" */ '../views/home-view.vue')
     }
   },
