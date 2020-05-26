@@ -13,8 +13,7 @@ const routes = [
     }
   },
   {
-    // TODO: need :word??
-    // path: '/list/:word',
+    // TODO: add query params for filter, sort & selected languages state?
     path: '/list',
     props: true,
     component: function () {
