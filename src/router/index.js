@@ -8,8 +8,8 @@ const routes = [
     path: '/',
     component: function () {
       // route level code-splitting
-      // generates a separate chunk (home.[hash].js) which can be lazy-loaded.
-      return import(/* webpackChunkName: "home" */ '../views/home.vue')
+      // generates a separate chunk (home-view.[hash].js) which can be lazy-loaded.
+      return import(/* webpackChunkName: "home-view" */ '../views/home-view.vue')
     }
   },
   {
@@ -17,14 +17,14 @@ const routes = [
     path: '/list',
     props: true,
     component: function () {
-      return import(/* webpackChunkName: "list" */ '../views/list.vue')
+      return import(/* webpackChunkName: "list-view" */ '../views/list-view.vue')
     }
   },
   {
     path: '/test',
     props: true,
     component: function () {
-      return import(/* webpackChunkName: "list" */ '../views/test.vue')
+      return import(/* webpackChunkName: "test-view" */ '../views/test-view.vue')
     }
   },
   {
