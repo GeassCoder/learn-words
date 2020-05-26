@@ -33,11 +33,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#language-selector {
-  margin-bottom: 20px;
-}
-
 label {
-  margin-left: 20px;
+  margin-left: 10px;
 }
 </style>

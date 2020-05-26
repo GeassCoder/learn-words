@@ -42,6 +42,12 @@ export default {
   font-size: 20px;
   font-weight: bold;
   height: 40px;
+  cursor: pointer;
+
+  &:hover, &.active {
+    background-color: $info;
+    color: $white;
+  }
 
   &[disabled] {
     color: $disabled;

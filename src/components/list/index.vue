@@ -1,15 +1,29 @@
 <template>
   <div class="list">
     <!-- TODO: figure out how shared components are bundled? -->
-    <language-selector></language-selector>
+    <!-- should only render on mobile -->
+    <div class="for-mobile language-selector">
+      <language-selector></language-selector>
+    </div>
     <flyout>
       <template v-slot:controls>
-        <info-button class="small toggle-filter" @click="onFiltersClick">
-          Filters
-        </info-button>
-        <info-button class="small" @click="onSortByClick">
-          Sort By
-        </info-button>
+        <div class="controls-container">
+          <!-- should only render on tablet and above -->
+          <div class="for-above-tablet language-selector">
+            <language-selector></language-selector>
+          </div>
+          <div class="control-buttons">
+            <info-button class="small" @click="onFiltersClick"
+              :class="{active: showFilters}">
+              Filters <span class="down-arrow">&#9660;</span>
+            </info-button>
+            <span class="divider">|</span>
+            <info-button class="small" @click="onSortByClick"
+              :class="{active: showSorter}">
+              Sort By <span class="down-arrow">&#9660;</span>
+            </info-button>
+          </div>
+        </div>
       </template>
       <template v-slot:container>
         <list-filters v-if="showFilters" v-model="filters"
@@ -79,8 +93,51 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.toggle-filter {
-  margin-right: 20px;
+.language-selector {
+  &.for-mobile {
+    margin: 0 0 10px 10px;
+  }
+
+  &.for-above-tablet {
+    display: none;
+  }
+
+  @include above-tablet {
+    &.for-mobile {
+      display: none;
+    }
+
+    &.for-above-tablet {
+      display: block;
+    }
+  }
+}
+
+.controls-container {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+}
+
+.control-buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    border: none;
+    margin: 0 20px;
+
+    .down-arrow {
+      display: inline-block;
+      font-size: 10px;
+      transform: scale(1.5, 1) translateY(-2px)
+    }
+  }
+
+  .divider {
+    color: $disabled;
+    font-size: 25px;
+  }
 }
 
 .word-list {

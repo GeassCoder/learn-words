@@ -54,6 +54,10 @@ export default {
     padding: 5px 10px;
     margin-bottom: 0;
 
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
     button.toggle-details {
       margin: 0 15px;
     }

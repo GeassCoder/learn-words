@@ -18,12 +18,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.flyout-controls {
-  margin-bottom: 3px;
-  padding: 5px 10px;
-  background-color: $info;
-}
-
 .flyout-container {
   position: relative;
 
