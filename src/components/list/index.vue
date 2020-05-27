@@ -70,10 +70,24 @@ export default {
     }
   },
   computed: {
-    // make 'filteredList' a computed prop to take advantage of caching
-    // if only sort is changed we don't have to re-compute this.list from scratch
+    // make computed props for _wordsInSelectedLanguages and 'filteredList' to
+    // take advantage of caching if only sort is changed we don't have to
+    // re-compute this.list from scratch
+    _wordsInSelectedLanguages () {
+      // save some typings
+      const selectedLanguages = this.$store.state.selectedLanguages
+      const allWords = this.$store.state.words
+
+      if (selectedLanguages.includes('All')) {
+        return allWords
+      }
+
+      return allWords.filter(word => {
+        return selectedLanguages.includes(word.language)
+      })
+    },
     _filteredList () {
-      return listService.applyFilters(this.$store.state.words, this.filters)
+      return listService.applyFilters(this._wordsInSelectedLanguages, this.filters)
     },
     list () {
       return listService.applySort(this._filteredList, this.sort)

@@ -32,7 +32,8 @@ export default new Vuex.Store({
           creationTime: 1234567890123,
           lastShownTime: 1234567890123, // inited as creation time, updated on each test
           lastTestResult: 'N/A', // 'pass'/'fail'/'N/A'
-          familiarity: 0 // 0-9
+          familiarity: 0, // 0-9,
+          language: 'English' // should be generated on backend? on updateWord and addWord
         }
       },
       {
@@ -47,7 +48,8 @@ export default new Vuex.Store({
           creationTime: 1234567890123,
           lastShownTime: 1234567890123,
           lastTestResult: 'pass', // 'pass'/'fail'/'N/A'
-          familiarity: 0 // 0-9
+          familiarity: 0, // 0-9
+          language: 'English' // should be generated on backend? on updateWord and addWord
         }
       }
     ]
