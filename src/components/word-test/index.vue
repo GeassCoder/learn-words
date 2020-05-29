@@ -9,7 +9,7 @@
     <div v-if="state === STATES.started" class="in-test">
       <p class="test-header">
         <span class="current-index">
-          {{formattedCurrent}} / {{testWordsLength}}
+          {{ formattedCurrent }} / {{ testWordsLength }}
         </span>
         <button @click="endTest">Quit</button>
       </p>
