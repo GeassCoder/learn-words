@@ -78,6 +78,7 @@ export default {
 <style scoped lang="scss">
 .time-range-selector {
   border: none;
+  box-shadow: none;
 
   .date-selector {
     margin-right: 20px;

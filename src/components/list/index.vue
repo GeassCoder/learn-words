@@ -138,7 +138,6 @@ export default {
   justify-content: flex-end;
 
   button {
-    border: none;
     margin: 0 20px;
 
     .down-arrow {

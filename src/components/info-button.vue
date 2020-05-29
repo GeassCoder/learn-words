@@ -36,13 +36,9 @@ export default {
   // the gradient background, setting 'background-color: white;' only
   // does not work.
   // https://css-tricks.com/overriding-default-button-styles/
-  border: 1px solid $info;
+  border: 1px solid $info-bg;
   background-color: $white;
   color: $info;
-  font-size: 20px;
-  font-weight: bold;
-  height: 40px;
-  cursor: pointer;
 
   &:hover, &.active {
     background-color: $info;

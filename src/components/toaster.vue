@@ -60,6 +60,7 @@ export default {
     color: $white;
     border: transparent;
     background-color: transparent;
+    box-shadow: none;
   }
 }
 

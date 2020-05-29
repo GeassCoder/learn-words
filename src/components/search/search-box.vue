@@ -1,7 +1,7 @@
 <template>
   <div class="search-box">
     <input v-model.trim="searchText" @keyup.enter="search"
-      placeholder="Search a word or phrase">
+      placeholder="Enter a word or phrase">
     <button class="clear" @click="searchText=''"> &#215; </button>
     <info-button @click="search">Search</info-button>
     <p v-if="searchError" class="error">Must type 3 chars at least!</p>
@@ -43,10 +43,12 @@ export default {
 
 input {
   width: 75%;
-  padding: 7px 30px 7px 7px;
+  padding: 7px 30px 7px 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-color: $disabled-bg;
 }
 
-button.clear {
+.clear {
   position: relative;
   top: 3px;
   background-color: transparent;
@@ -54,6 +56,8 @@ button.clear {
   right: 30px;
   border: transparent;
   font-size: 30px;
+  box-shadow: none;
+  font-weight: normal;
 }
 
 p.error {

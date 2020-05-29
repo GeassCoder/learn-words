@@ -50,5 +50,6 @@ export default {
 <style scoped lang="scss">
 .label-text {
   margin-right: 10px;
+  font-weight: bold;
 }
 </style>

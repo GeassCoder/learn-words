@@ -1,5 +1,5 @@
 <template>
-  <div class="test-card">
+  <div class="test-card card">
     {{ word.text }}
   </div>
 </template>
@@ -18,6 +18,9 @@ export default {
 
 <style scoped lang="scss">
 .test-card {
-  display: inline-block;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 30px;
+  letter-spacing: 2px;
 }
 </style>

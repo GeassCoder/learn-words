@@ -1,7 +1,7 @@
 <template>
   <div id="test-view">
     <!-- TODO: figure out how shared components are bundled? -->
-    <language-selector v-if="!isTesting"></language-selector>
+    <language-selector class="language-selector" v-if="!isTesting"></language-selector>
     <word-test
       @test-started="isTesting = true"
       @test-ended="isTesting = false">
@@ -28,5 +28,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.language-selector {
+  margin: 0 20px 20px;
+}
 </style>

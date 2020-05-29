@@ -1,11 +1,11 @@
 <template>
   <div class="word" :class="theme + '-theme'">
     <p class="title">
-      <span>{{ word.text }}</span>
+      <span class="word-text">{{ word.text }}</span>
       <info-button class="small toggle-details" @click="toggleDetails">
         {{ showDetails ? 'Hide' : 'Show' }} Details
       </info-button>
-      <google-link :to-search="word.text">google '{{word.text}}'</google-link>
+      <google-link :to-search="word.text">Google '{{word.text}}'</google-link>
     </p>
     <word-details class="word-details" v-show="showDetails" :word="word"></word-details>
   </div>
@@ -80,6 +80,11 @@ export default {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    .word-text {
+      font-weight: bold;
+      text-transform: capitalize;
+    }
 
     button.toggle-details {
       margin: 0 15px;
