@@ -1,11 +1,8 @@
-export default {
-  getTestWords (list, selectedLanguages) {
-    const MS_PER_DAY = 86400000 // 24 * 60 * 60 * 1000
-    const familiarityMap = [0, 0, 1, 2, 4, 7, 15, 30, 90, 180].map(
-      days => days * MS_PER_DAY
-    )
-    const now = Date.now()
+import familiarityService from '@/services/familiarity-service.js'
+import utility from '@/services/utility.js'
 
+export default {
+  getTestWords (list, selectedLanguages, now) {
     return list.filter(word => {
       const meta = word.meta
 
@@ -14,11 +11,15 @@ export default {
         selectedLanguages.includes(meta.language)
       )
 
+      const span = familiarityService.familiarityMap[meta.familiarity]
       const shouldTestNow = (
-        meta.lastShownTime + familiarityMap[meta.familiarity] <= now
+        meta.lastShownTime + span <= now
       )
 
       return isInSelectedLanguages && shouldTestNow
     }).slice(0, 50)
+  },
+  formatIndex (index, length) {
+    return utility.clamp(index, 1, length)
   }
 }

@@ -1,8 +1,11 @@
 <template>
   <div id="test-view">
     <!-- TODO: figure out how shared components are bundled? -->
-    <language-selector></language-selector>
-    <word-test></word-test>
+    <language-selector v-if="!isTesting"></language-selector>
+    <word-test
+      @test-started="isTesting = true"
+      @test-ended="isTesting = false">
+    </word-test>
   </div>
 </template>
 
@@ -15,6 +18,11 @@ export default {
   components: {
     LanguageSelector,
     WordTest
+  },
+  data () {
+    return {
+      isTesting: false
+    }
   }
 }
 </script>

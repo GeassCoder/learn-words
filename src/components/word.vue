@@ -1,5 +1,5 @@
 <template>
-  <div class="word">
+  <div class="word" :class="theme + '-theme'">
     <p class="title">
       <span>{{ word.text }}</span>
       <info-button class="small toggle-details" @click="toggleDetails">
@@ -32,6 +32,10 @@ export default {
     word: {
       type: Object,
       required: true
+    },
+    theme: {
+      type: String,
+      default: 'success'
     }
   },
   computed: {
@@ -49,8 +53,27 @@ export default {
 
 <style scoped lang="scss">
 .word {
+  &.success-theme {
+    .title {
+      background-color: $success-bg;
+    }
+
+    .word-details {
+      border: 1px solid $success-bg;
+    }
+  }
+
+  &.fail-theme {
+    .title {
+      background-color: $error-bg;
+    }
+
+    .word-details {
+      border: 1px solid $error-bg;
+    }
+  }
+
   .title {
-    background-color: $success-bg;
     padding: 5px 10px;
     margin-bottom: 0;
 
@@ -65,7 +88,6 @@ export default {
 
   .word-details {
     padding: 20px;
-    border: 1px solid $success-bg;
     border-top: transparent;
   }
 }

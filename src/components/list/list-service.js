@@ -1,3 +1,5 @@
+import familiarityService from '@/services/familiarity-service.js'
+
 export default {
   getTimeOptions () {
     const arr = ['1 day ago', '7 days ago', '30 days ago', '90 days ago', '180 days ago']
@@ -35,7 +37,7 @@ export default {
   getFiltersInit () {
     return {
       failedInLastTest: false,
-      familiarity: 9,
+      familiarity: familiarityService.familiarityMax,
       creationTime: this.getEmptyTimeModel(),
       lastShownTime: this.getEmptyTimeModel()
     }

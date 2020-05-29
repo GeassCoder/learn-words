@@ -20,5 +20,16 @@ export default {
     if (index > -1) {
       this.replaceByIndex(arr, index, obj)
     }
+  },
+  clamp (value, min, max) {
+    if (value < min) {
+      return min
+    }
+
+    if (value > max) {
+      return max
+    }
+
+    return value
   }
 }

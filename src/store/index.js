@@ -51,6 +51,22 @@ export default new Vuex.Store({
           familiarity: 0, // 0-9
           language: 'English' // should be generated on backend? on updateWord and addWord
         }
+      },
+      {
+        id: '12348',
+        text: 'freaking',
+        meaning: 'bla bla bla',
+        notes: [
+          'first note'
+        ],
+        examples: [],
+        meta: {
+          creationTime: 1234567890333,
+          lastShownTime: 1234567890999, // inited as creation time, updated on each test
+          lastTestResult: 'pass', // 'pass'/'fail'/'N/A'
+          familiarity: 0, // 0-9,
+          language: 'English' // should be generated on backend? on updateWord and addWord
+        }
       }
     ]
   },

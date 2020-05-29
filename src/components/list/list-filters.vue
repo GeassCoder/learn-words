@@ -29,7 +29,7 @@
     <!-- familiarity range -->
     <section class="section">
       <p>Familiarity: {{ formattedFamiliarity }}</p>
-      <slider min="0" max="9" v-model="familiarity">
+      <slider :min="familiarityMin" :max="familiarityMax" v-model="familiarity">
       </slider>
     </section>
     <!-- controls -->
@@ -39,6 +39,7 @@
 
 <script>
 import listService from './list-service.js'
+import familiarityService from '@/services/familiarity-service.js'
 import TimeRangeSelector from '@/components/time-range-selector.vue'
 import Slider from '@/components/slider.vue'
 import InfoButton from '@/components/info-button.vue'
@@ -63,6 +64,8 @@ export default {
     return {
       creationTimeOptions: listService.getTimeOptions(),
       lastShownTimeOptions: listService.getTimeOptions(),
+      familiarityMin: familiarityService.familiarityMin,
+      familiarityMax: familiarityService.familiarityMax,
       ...this.value
     }
   },
@@ -71,11 +74,11 @@ export default {
       return this.creationTime.hasError || this.lastShownTime.hasError
     },
     formattedFamiliarity () {
-      if (this.familiarity === 9) {
+      if (this.familiarity === this.familiarityMax) {
         return 'All Included'
       }
 
-      if (this.familiarity === 0) {
+      if (this.familiarity === this.familiarityMin) {
         return 0
       }
 
