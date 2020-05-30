@@ -21,5 +21,24 @@ export default {
   },
   formatIndex (index, length) {
     return utility.clamp(index, 1, length)
+  },
+  getUpdatedWord (word, hasPassed, now) {
+    const wordCopy = utility.deepCopy(word)
+
+    // save some typings
+    const meta = wordCopy.meta
+    const familiarity = meta.familiarity
+
+    meta.lastShownTime = now
+
+    if (hasPassed) {
+      meta.lastTestResult = 'pass'
+      meta.familiarity = familiarityService.incrementFamiliarity(familiarity)
+    } else {
+      meta.lastTestResult = 'fail'
+      meta.familiarity = familiarityService.decrementFamiliarity(familiarity)
+    }
+
+    return wordCopy
   }
 }

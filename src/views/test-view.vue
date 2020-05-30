@@ -29,6 +29,6 @@ export default {
 
 <style scoped lang="scss">
 .language-selector {
-  margin: 0 20px 20px;
+  margin: 0 20px 30px;
 }
 </style>
