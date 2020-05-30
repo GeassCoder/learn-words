@@ -1,6 +1,5 @@
 <template>
   <div class="list">
-    <!-- TODO: figure out how shared components are bundled? -->
     <!-- should only render on mobile -->
     <div class="for-mobile language-selector">
       <language-selector></language-selector>

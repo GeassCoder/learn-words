@@ -1,6 +1,5 @@
 <template>
   <div id="test-view">
-    <!-- TODO: figure out how shared components are bundled? -->
     <language-selector class="language-selector" v-if="!isTesting"></language-selector>
     <word-test
       @test-started="isTesting = true"
