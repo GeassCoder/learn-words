@@ -1,6 +1,8 @@
 <template>
-  <a :href="href" target="_blank">
-    <slot>google it</slot>
+  <a class="google-link" :href="href" target="_blank">
+    <slot>
+      <span class="default">google it</span>
+    </slot>
   </a>
 </template>
 
@@ -20,3 +22,13 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.google-link {
+  text-transform: capitalize;
+
+  .default {
+    text-transform: none;
+  }
+}
+</style>

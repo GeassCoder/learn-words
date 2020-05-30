@@ -20,7 +20,7 @@ export default {
 .test-card {
   font-weight: bold;
   text-transform: capitalize;
-  font-size: 30px;
+  font-size: 40px;
   letter-spacing: 2px;
 }
 </style>

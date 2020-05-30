@@ -5,7 +5,7 @@
       <info-button class="small toggle-details" @click="toggleDetails">
         {{ showDetails ? 'Hide' : 'Show' }} Details
       </info-button>
-      <google-link :to-search="word.text">Google '{{word.text}}'</google-link>
+      <google-link class="google-link" :to-search="word.text">Google "{{word.text}}"</google-link>
     </p>
     <word-details class="word-details" v-show="showDetails" :word="word"></word-details>
   </div>
@@ -53,6 +53,8 @@ export default {
 
 <style scoped lang="scss">
 .word {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
   &.success-theme {
     .title {
       background-color: $success-bg;
@@ -74,7 +76,7 @@ export default {
   }
 
   .title {
-    padding: 5px 10px;
+    padding: 8px 5%;
     margin-bottom: 0;
 
     overflow: hidden;
@@ -84,10 +86,17 @@ export default {
     .word-text {
       font-weight: bold;
       text-transform: capitalize;
+      margin-right: 6%;
     }
 
-    button.toggle-details {
-      margin: 0 15px;
+    .toggle-details {
+      margin: 0 16px;
+      margin-right: 4%;
+      font-size: 16px;
+    }
+
+    .google-link {
+      font-size: 18px;
     }
   }
 
