@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import WordDetails from '@/components/word-details/index.vue'
+import WordDetails from '@/components/word-details/word-details-index.vue'
 import GoogleLink from '@/components/google-link.vue'
 import InfoButton from '@/components/info-button.vue'
 

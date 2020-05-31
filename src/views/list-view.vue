@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import List from '@/components/list/index.vue'
+import List from '@/components/list/list-index.vue'
 
 export default {
   name: 'list-view',

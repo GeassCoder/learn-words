@@ -10,7 +10,7 @@
 
 <script>
 import LanguageSelector from '@/components/language-selector.vue'
-import WordTest from '@/components/word-test/index.vue'
+import WordTest from '@/components/word-test/word-test-index.vue'
 
 export default {
   name: 'test-view',
