@@ -1,12 +1,12 @@
 <template>
-  <div class="test-card card">
+  <div class="word-test-card card">
     {{ word.text }}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'test-card',
+  name: 'word-test-card',
   props: {
     word: {
       type: Object,
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.test-card {
+.word-test-card {
   font-weight: bold;
   text-transform: capitalize;
   font-size: 40px;

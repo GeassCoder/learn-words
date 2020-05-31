@@ -1,5 +1,5 @@
 <template>
-  <div class="test-payload">
+  <div class="word-test-payload">
     <p class="test-header">
       <span class="current-index">
         <span> {{ formattedCurrent }} </span> /
@@ -10,9 +10,9 @@
     <transition name="fade" mode="out-in"
       @after-enter="testButtonDisabled = false"
       @after-leave="checkIfEnded">
-      <test-card v-if="currentWord" :word="currentWord"
-        class="test-card" :key="currentWord.id">
-      </test-card>
+      <word-test-card v-if="currentWord" :word="currentWord"
+        class="word-test-card" :key="currentWord.id">
+      </word-test-card>
     </transition>
     <div class="test-buttons">
       <button @click="next(true)" class="success-theme">Familiar</button>
@@ -23,12 +23,12 @@
 
 <script>
 import wordTestService from './word-test-service.js'
-import TestCard from './test-card.vue'
+import WordTestCard from './word-test-card.vue'
 
 export default {
-  name: 'test-payload',
+  name: 'word-test-payload',
   components: {
-    TestCard
+    WordTestCard
   },
   props: {
     now: {
@@ -104,7 +104,7 @@ $width: 80%;
   align-items: flex-end;
 }
 
-.test-card {
+.word-test-card {
   margin-bottom: 20px;
 }
 

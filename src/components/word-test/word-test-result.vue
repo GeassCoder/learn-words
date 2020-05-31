@@ -1,5 +1,5 @@
 <template>
-  <div class="test-result">
+  <div class="word-test-result">
     <div v-if="!failedWords.length" class="none-failed card">
       Great! No test word failed.
     </div>
@@ -18,7 +18,7 @@
 import Word from '@/components/word.vue'
 
 export default {
-  name: 'test-result',
+  name: 'word-test-result',
   components: {
     Word
   },

@@ -6,27 +6,27 @@
     <div v-if="state === STATES.noTest" class="no-test card">
       No need to test at this time!
     </div>
-    <test-payload v-if="state === STATES.started"
+    <word-test-payload v-if="state === STATES.started"
       :now="now" :test-words="testWords" @test-ended="endTest">
-    </test-payload>
-    <test-result v-if="state === STATES.ended"
+    </word-test-payload>
+    <word-test-result v-if="state === STATES.ended"
       :failed-words="result.failed">
-    </test-result>
+    </word-test-result>
   </div>
 </template>
 
 <script>
 import wordTestService from './word-test-service.js'
 import InfoButton from '@/components/info-button.vue'
-import TestPayload from './test-payload.vue'
-import TestResult from './test-result.vue'
+import WordTestPayload from './word-test-payload.vue'
+import WordTestResult from './word-test-result.vue'
 
 export default {
   name: 'word-test',
   components: {
     InfoButton,
-    TestPayload,
-    TestResult
+    WordTestPayload,
+    WordTestResult
   },
   data () {
     const STATES = {

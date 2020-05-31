@@ -6,9 +6,9 @@
         :searched-text="searchedText"
         :results="searchResults">
       </search-results>
-      <no-search-results v-else
+      <search-no-results v-else
         :searched-text="searchedText">
-      </no-search-results>
+      </search-no-results>
     </template>
   </div>
 </template>
@@ -16,7 +16,7 @@
 <script>
 import SearchBox from './search-box.vue'
 import SearchResults from './search-results.vue'
-import NoSearchResults from './no-search-results.vue'
+import SearchNoResults from './search-no-results.vue'
 import Fuse from 'fuse.js'
 import utility from '@/services/utility'
 
@@ -25,7 +25,7 @@ export default {
   components: {
     SearchBox,
     SearchResults,
-    NoSearchResults
+    SearchNoResults
   },
   data () {
     return {

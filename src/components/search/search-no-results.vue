@@ -1,5 +1,5 @@
 <template>
-  <div class="no-search-results">
+  <div class="search-no-results">
     <p class="results-stats">
       Can't find results... You can either <google-link :to-search="searchedText"></google-link>
       or add it to the list.
@@ -18,7 +18,7 @@ import WordDetailsEdit from '@/components/word-details/word-details-edit.vue'
 import InfoButton from '@/components/info-button.vue'
 
 export default {
-  name: 'no-search-results',
+  name: 'search-no-results',
   components: {
     GoogleLink,
     WordDetailsEdit,
