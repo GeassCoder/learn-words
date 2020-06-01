@@ -1,30 +1,24 @@
 <template>
 <transition name="fade">
   <div id="toaster" v-if="message" :class="type">
-    <button @click="close" title="close"> &#215; </button>
+    <button @click="updateToasterMessage({message: ''})" title="close">
+      &#215;
+    </button>
     <p>{{ message }}</p>
   </div>
 </transition>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   name: 'toaster',
-  computed: {
-    message () {
-      return this.$store.state.toaster.message
-    },
-    type () {
-      return this.$store.state.toaster.type
-    }
-  },
-  methods: {
-    close () {
-      this.$store.dispatch('updateToasterMessage', {
-        message: ''
-      })
-    }
-  }
+  computed: mapState({
+    message: state => state.toaster.message,
+    type: state => state.toaster.type
+  }),
+  methods: mapActions(['updateToasterMessage'])
 }
 </script>
 
