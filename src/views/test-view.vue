@@ -1,6 +1,7 @@
 <template>
   <div id="test-view">
-    <language-selector class="language-selector" v-if="!isTesting"></language-selector>
+    <language-selector class="language-selector" v-if="!isTesting">
+    </language-selector>
     <word-test
       @test-started="isTesting = true"
       @test-ended="isTesting = false">

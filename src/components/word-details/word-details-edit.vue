@@ -17,7 +17,8 @@
       <ul>
         <li v-for="(note, index) in wordModel.notes" :key="index">
           <!-- Note: can't use v-model directly as assigning to local variables won't update data models -->
-          <input :value="note" @input="wordModel.notes[index] = $event.target.value.trim()">
+          <input :value="note" 
+            @input="wordModel.notes[index] = $event.target.value.trim()">
           <info-button @click="deleteNote(index)">Delete</info-button>
         </li>
       </ul>
@@ -28,7 +29,8 @@
       <legend><strong>Examples: </strong></legend>
       <ul>
         <li v-for="(example, index) in wordModel.examples" :key="index">
-          <input :value="example" @input="wordModel.examples[index] = $event.target.value.trim()">
+          <input :value="example"
+            @input="wordModel.examples[index] = $event.target.value.trim()">
           <info-button @click="deleteExample(index)">Delete</info-button>
         </li>
       </ul>

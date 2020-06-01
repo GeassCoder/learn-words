@@ -1,6 +1,8 @@
 <template>
   <div class="search-results">
-    <google-link class="google-link" :to-search="searchedText">Google "{{searchedText}}"</google-link>
+    <google-link class="google-link" :to-search="searchedText">
+      Google "{{searchedText}}"
+    </google-link>
     <p class="results-stats">
       Found <span class="results-length"> {{ resultsLength }} </span>
       {{ resultsLength === 1 ? "result" : "results" }}

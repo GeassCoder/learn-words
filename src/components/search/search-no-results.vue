@@ -1,7 +1,8 @@
 <template>
   <div class="search-no-results">
     <p class="results-stats">
-      Can't find results... You can either <google-link :to-search="searchedText"></google-link>
+      Can't find results... You can either 
+      <google-link :to-search="searchedText"></google-link>
       or add it to the list.
     </p>
     <word-details-edit v-if="isEditing" :word-info="wordInfo"

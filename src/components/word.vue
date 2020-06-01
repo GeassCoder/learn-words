@@ -5,9 +5,12 @@
       <info-button class="small toggle-details" @click="toggleDetails">
         {{ showDetails ? 'Hide' : 'Show' }} Details
       </info-button>
-      <google-link class="google-link" :to-search="word.text">Google "{{word.text}}"</google-link>
+      <google-link class="google-link" :to-search="word.text">
+        Google "{{word.text}}"
+      </google-link>
     </p>
-    <word-details class="word-details" v-show="showDetails" :word="word"></word-details>
+    <word-details class="word-details" v-show="showDetails" :word="word">
+    </word-details>
   </div>
 </template>
 
