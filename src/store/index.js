@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {
+    now: Date.now(),
     selectedLanguages: ['All'],
     toaster: {
       message: '',
@@ -72,6 +73,10 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
+    updateNow (state) {
+      state.now = Date.now()
+    },
+
     updateSelectedLanguages (state, selectedLanguages) {
       state.selectedLanguages = selectedLanguages
     },
@@ -99,6 +104,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    updateNow () {
+      this.commit('updateNow')
+    },
+
     updateSelectedLanguages ({ commit, state }, selectedLanguages) {
       // if no change, bail out
       if (utility.sameArrayValues(state.selectedLanguages, selectedLanguages)) {

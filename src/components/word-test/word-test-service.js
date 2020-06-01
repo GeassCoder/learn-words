@@ -19,10 +19,23 @@ export default {
       return isInSelectedLanguages && isTestDue
     }).slice(0, 50)
   },
+
   formatIndex (index, length) {
     return utility.clamp(index, 1, length)
   },
-  getUpdatedWord (word, hasPassed, now) {
+
+  getProcessedResult (result, now) {
+    return {
+      passed: result.passed.map(
+        passedWord => this._getUpdatedWord(passedWord, true, now)
+      ),
+      failed: result.failed.map(
+        failedWord => this._getUpdatedWord(failedWord, false, now)
+      )
+    }
+  },
+
+  _getUpdatedWord (word, hasPassed, now) {
     const wordCopy = utility.deepCopy(word)
 
     // save some typings

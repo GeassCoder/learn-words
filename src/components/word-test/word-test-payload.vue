@@ -31,10 +31,6 @@ export default {
     WordTestCard
   },
   props: {
-    now: {
-      type: Number,
-      default: Date.now()
-    },
     testWords: {
       type: Array,
       required: true
@@ -70,9 +66,7 @@ export default {
       this.testButtonDisabled = true
 
       // record result
-      this[isPassed ? 'passed' : 'failed'].push(
-        wordTestService.getUpdatedWord(this.currentWord, isPassed, this.now)
-      )
+      this[isPassed ? 'passed' : 'failed'].push(this.currentWord)
 
       // next
       ++this.current

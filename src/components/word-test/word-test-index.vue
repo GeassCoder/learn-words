@@ -7,7 +7,7 @@
       No need to test at this time!
     </div>
     <word-test-payload v-if="state === STATES.started"
-      :now="now" :test-words="testWords" @test-ended="endTest">
+      :test-words="testWords" @test-ended="endTest">
     </word-test-payload>
     <word-test-result v-if="state === STATES.ended"
       :failed-words="result.failed">
@@ -20,6 +20,7 @@ import wordTestService from './word-test-service.js'
 import InfoButton from '@/components/info-button.vue'
 import WordTestPayload from './word-test-payload.vue'
 import WordTestResult from './word-test-result.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'word-test',
@@ -40,9 +41,12 @@ export default {
       STATES,
       state: STATES.notStarted,
       testWords: [],
-      result: null,
-      now: Date.now()
+      result: null
     }
+  },
+  computed: mapState(['now']),
+  created () {
+    this.$store.dispatch('updateNow')
   },
   methods: {
     startTest () {
@@ -66,7 +70,8 @@ export default {
       this.$emit('test-started')
     },
     endTest (result) {
-      this.result = result
+      // TODO:
+      this.result = wordTestService.getProcessedResult(result, this.now)
       this.state = this.STATES.ended
       this.$emit('test-ended')
 

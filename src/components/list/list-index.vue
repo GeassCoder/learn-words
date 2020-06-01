@@ -49,6 +49,7 @@ import Flyout from '@/components/flyout.vue'
 import ListFilters from './list-filters.vue'
 import ListSorter from './list-sorter.vue'
 import Word from '@/components/word.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'list',
@@ -69,6 +70,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['now']),
     // make computed props for _wordsInSelectedLanguages and 'filteredList' to
     // take advantage of caching if only sort is changed we don't have to
     // re-compute this.list from scratch
@@ -86,11 +88,16 @@ export default {
       })
     },
     _filteredList () {
-      return listService.applyFilters(this._wordsInSelectedLanguages, this.filters)
+      return listService.applyFilters(
+        this._wordsInSelectedLanguages, this.filters, this.now
+      )
     },
     list () {
       return listService.applySort(this._filteredList, this.sort)
     }
+  },
+  created () {
+    this.$store.dispatch('updateNow')
   },
   methods: {
     onFiltersClick () {

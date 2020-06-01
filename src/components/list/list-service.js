@@ -34,6 +34,10 @@ export default {
     }
   },
 
+  isTimeModelEmpty (data) {
+    return !data.from || !data.to
+  },
+
   getFiltersInit () {
     return {
       failedInLastTest: false,
@@ -43,7 +47,7 @@ export default {
     }
   },
 
-  applyFilters (list, filters) {
+  applyFilters (list, filters, now) {
     if (!filters) {
       return list
     }
@@ -55,8 +59,6 @@ export default {
       creationTime,
       lastShownTime
     } = filters
-
-    const now = Date.now()
 
     return list.filter(word => {
       if (failedInLastTest) {
@@ -73,20 +75,20 @@ export default {
         }
       }
 
-      if (creationTime !== null) {
+      if (!this.isTimeModelEmpty(creationTime)) {
         const from = now - creationTime.from.ms
         const to = now - creationTime.to.ms
         const wordCreationTime = word.meta.creationTime
-        if (wordCreationTime < now - from || wordCreationTime > now - to) {
+        if (wordCreationTime < from || wordCreationTime > to) {
           return false
         }
       }
 
-      if (lastShownTime !== null) {
+      if (!this.isTimeModelEmpty(creationTime)) {
         const from = now - lastShownTime.from.ms
         const to = now - lastShownTime.to.ms
         const wordLastShownTime = word.meta.lastShownTime
-        if (wordLastShownTime < now - from || wordLastShownTime > now - to) {
+        if (wordLastShownTime < from || wordLastShownTime > to) {
           return false
         }
       }
