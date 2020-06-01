@@ -12,11 +12,11 @@ export default {
       )
 
       const span = familiarityService.familiarityMap[meta.familiarity]
-      const shouldTestNow = (
+      const isTestDue = (
         meta.lastShownTime + span <= now
       )
 
-      return isInSelectedLanguages && shouldTestNow
+      return isInSelectedLanguages && isTestDue
     }).slice(0, 50)
   },
   formatIndex (index, length) {
