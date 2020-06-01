@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  padding-left: 0;
+
+  li {
+      list-style: none;
+  }
+}
+
+p {
+  margin: 0 0 20px 0;
+}
+
+input:not([type]) {
+  height: 40px;
+  font-size: 20px;
+  padding-left: 10px;
+  border: 1px solid $light-border;
+  box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.1);
+
+  &.small {
+      height: 30px;
+  }
+}
+
+input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.1);
+
+  &:checked {
+      background-color: $info;
+  }
+}
+
+select {
+  box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.1);
+  font-size: 15px;
+  padding: 4px;
+  border: 1px solid $light-border;
+  color: $info;
+  font-weight: bold;
+}
+
+button {
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  font-size: 20px;
+  font-weight: bold;
+  height: 40px;
+  cursor: pointer;
+
+  &.warning-theme {
+    color: $warning;
+    background-color: $white;
+    border: 1px solid $warning-bg;
+
+    &:hover {
+      color: $white;
+      background-color: $warning;
+    }
+  }
+
+  &.success-theme {
+    color: $success;
+    background-color: $white;
+    border: 1px solid $success-bg;
+
+    &:hover {
+      color: $white;
+      background-color: $success;
+    }
+
+    &:focus {
+      outline-color: $success;
+    }
+  }
+
+  &.fail-theme {
+    color: $error;
+    background-color: $white;
+    border: 1px solid $error-bg;
+
+    &:hover {
+      color: $white;
+      background-color: $error;
+    }
+
+    &:focus {
+      outline-color: $error;
+    }
+  }
+}
+
+fieldset {
+  border: 1px solid $light-border;
+  box-shadow: 2px 4px 4px 0 rgba(0,0,0,0.1);
+}
+
+.error {
+  color: $error;
+}
+
+.card {
+  margin: 0 auto;
+  width: 80%;
+  min-height: 400px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -7,7 +7,7 @@
       </span>
       <button @click="endTest" class="warning-theme">Quit</button>
     </p>
-    <transition name="fade" mode="out-in"
+    <transition name="slide" mode="out-in"
       @after-enter="testButtonDisabled = false"
       @after-leave="checkIfEnded">
       <word-test-card v-if="currentWord" :word="currentWord"
@@ -115,62 +115,19 @@ $width: 80%;
   justify-content: space-around;
 }
 
-button {
-  &.warning-theme {
-    color: $warning;
-    background-color: $white;
-    border: 1px solid $warning-bg;
-
-    &:hover {
-      color: $white;
-      background-color: $warning;
-    }
-  }
-
-  &.success-theme {
-    color: $success;
-    background-color: $white;
-    border: 1px solid $success-bg;
-
-    &:hover {
-      color: $white;
-      background-color: $success;
-    }
-
-    &:focus {
-      outline-color: $success;
-    }
-  }
-
-  &.fail-theme {
-    color: $error;
-    background-color: $white;
-    border: 1px solid $error-bg;
-
-    &:hover {
-      color: $white;
-      background-color: $error;
-    }
-
-    &:focus {
-      outline-color: $error;
-    }
-  }
-}
-
-.fade-enter-active, .fade-leave-active {
+.slide-enter-active, .slide-leave-active {
   transition: transform 0.3s, opacity 0.3s;
 }
 
-.fade-enter, .fade-leave-to {
+.slide-enter, .slide-leave-to {
   opacity: 0;
 }
 
-.fade-enter {
+.slide-enter {
   transform: translate(50%, 0);
 }
 
-.fade-leave-to {
+.slide-leave-to {
   transform: translate(-50%, 0);
 }
 </style>
