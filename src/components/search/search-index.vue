@@ -29,13 +29,14 @@ export default {
   },
   data () {
     return {
+      _unwatch: null,
       searchedText: '',
       searchResults: [],
       searchError: false
     }
   },
   created () {
-    this.$store.watch(
+    this._unwatch = this.$store.watch(
       state => state.updatedWord,
       (newValue, oldValue) => {
         if (newValue !== oldValue) {
@@ -43,6 +44,9 @@ export default {
         }
       }
     )
+  },
+  beforeDestroy () {
+    this._unwatch()
   },
   methods: {
     onSearchUpdate ({ searchedText, searchError }) {
