@@ -1,7 +1,7 @@
 <template>
   <div class="search-no-results">
     <p class="results-stats">
-      Can't find results... You can either 
+      Can't find results... You can either
       <google-link :to-search="searchedText"></google-link>
       or add it to the list.
     </p>
