@@ -82,7 +82,7 @@ export default {
         return 0
       }
 
-      return '<=' + this.familiarity
+      return '≤ ' + this.familiarity
     }
   },
   methods: {
