@@ -34,10 +34,6 @@ export default {
     }
   },
 
-  isTimeModelEmpty (data) {
-    return !data.from || !data.to
-  },
-
   getFiltersInit () {
     return {
       failedInLastTest: false,
@@ -45,6 +41,20 @@ export default {
       creationTime: this.getEmptyTimeModel(),
       lastShownTime: this.getEmptyTimeModel()
     }
+  },
+
+  isTimeRuleEmpty (data) {
+    return !data.from || !data.to
+  },
+
+  isTimeRuleViolated (timeRule, wordTime, now) {
+    if (this.isTimeRuleEmpty(timeRule)) {
+      return false
+    }
+
+    const from = now - timeRule.from.ms
+    const to = now - timeRule.to.ms
+    return (wordTime < from || wordTime > to)
   },
 
   applyFilters (list, filters, now) {
@@ -61,36 +71,37 @@ export default {
     } = filters
 
     return list.filter(word => {
-      if (failedInLastTest) {
-        // not failed in last test, then don't include it
-        if (word.meta.lastTestResult !== 'fail') {
-          return false
-        }
+      const meta = word.meta
+
+      // failed in last test rule
+      if (failedInLastTest && (meta.lastTestResult !== 'fail')) {
+        // if want to show failed but current is not failed, then
+        // don't include it
+        return false
       }
 
-      if (familiarity !== null) {
+      // familiarity rule
+      if (meta.familiarity > familiarity) {
         // already familiar enough, then don't include it
-        if (word.meta.familiarity > familiarity) {
-          return false
-        }
+        return false
       }
 
-      if (!this.isTimeModelEmpty(creationTime)) {
-        const from = now - creationTime.from.ms
-        const to = now - creationTime.to.ms
-        const wordCreationTime = word.meta.creationTime
-        if (wordCreationTime < from || wordCreationTime > to) {
-          return false
-        }
+      // creation time rule
+      const isCreationTimeRuleViolated = this.isTimeRuleViolated(
+        creationTime, meta.creationTime, now
+      )
+
+      if (isCreationTimeRuleViolated) {
+        return false
       }
 
-      if (!this.isTimeModelEmpty(creationTime)) {
-        const from = now - lastShownTime.from.ms
-        const to = now - lastShownTime.to.ms
-        const wordLastShownTime = word.meta.lastShownTime
-        if (wordLastShownTime < from || wordLastShownTime > to) {
-          return false
-        }
+      // last shown time rule
+      const isLastShownTimeRuleViolated = this.isTimeRuleViolated(
+        lastShownTime, meta.lastShownTime, now
+      )
+
+      if (isLastShownTimeRuleViolated) {
+        return false
       }
 
       return true
