@@ -6,9 +6,9 @@
     </p>
     <word-details-edit v-if="isEditing" :word-info="wordInfo"
       @word-edit-saved="addToList"
-      @word-edit-canceled="addToListCanceled">
+      @word-edit-canceled="isEditing = false">
     </word-details-edit>
-    <info-button v-else @click="showEditForm">Add To List</info-button>
+    <info-button v-else @click="isEditing = true">Add To List</info-button>
   </div>
 </template>
 
@@ -32,9 +32,13 @@ export default {
   },
   data () {
     return {
-      isEditing: false,
-      wordInfo: {
-        text: ''
+      isEditing: false
+    }
+  },
+  computed: {
+    wordInfo () {
+      return {
+        text: this.searchedText
       }
     }
   },
@@ -46,10 +50,6 @@ export default {
     }
   },
   methods: {
-    showEditForm () {
-      this.isEditing = true
-      this.wordInfo.text = this.searchedText
-    },
     addToList (newWord) {
       // TODO: make ajax call
       // TODO: show error toaster message on error
@@ -67,9 +67,6 @@ export default {
         type: 'success'
       })
 
-      this.isEditing = false
-    },
-    addToListCanceled () {
       this.isEditing = false
     }
   }

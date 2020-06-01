@@ -10,9 +10,8 @@ export default new Vuex.Store({
     selectedLanguages: ['All'],
     toaster: {
       message: '',
-      timeoutId: null,
       type: 'error',
-      _timeoutId: null
+      timeoutId: null
     },
     // have to have this as custom events from a component cannot propagate to the grand parent.
     updatedWord: null,
@@ -86,7 +85,7 @@ export default new Vuex.Store({
     },
 
     updateToasterTimeout (state, timeoutId) {
-      state.toaster._timeoutId = timeoutId
+      state.toaster.timeoutId = timeoutId
     },
 
     updateWord (state, updatedWord) {
@@ -113,7 +112,7 @@ export default new Vuex.Store({
       commit('updateToasterMessage', toasterInfo)
 
       // clear previous timeout if any
-      clearTimeout(state.toaster._timeoutId)
+      clearTimeout(state.toaster.timeoutId)
 
       // reset in 10s
       const timeoutId = setTimeout(() => {

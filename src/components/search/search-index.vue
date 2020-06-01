@@ -29,7 +29,6 @@ export default {
   },
   data () {
     return {
-      _unwatch: null,
       searchedText: '',
       searchResults: [],
       searchError: false
