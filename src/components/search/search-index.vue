@@ -34,18 +34,15 @@ export default {
       searchError: false
     }
   },
-  // TODO: check if there is a better way to do this
-  computed: {
-    updatedWord () {
-      return this.$store.state.updatedWord
-    }
-  },
-  watch: {
-    updatedWord (newValue, oldValue) {
-      if (newValue !== oldValue) {
-        utility.replaceById(this.searchResults, newValue)
+  created () {
+    this.$store.watch(
+      state => state.updatedWord,
+      (newValue, oldValue) => {
+        if (newValue !== oldValue) {
+          utility.replaceById(this.searchResults, newValue)
+        }
       }
-    }
+    )
   },
   methods: {
     onSearchUpdate ({ searchedText, searchError }) {
