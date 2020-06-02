@@ -33,6 +33,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+#language-selector {
+  font-family: Roboto;
+}
+
 .title {
   display: block;
 }

@@ -37,6 +37,7 @@ export default {
 #nav {
   padding: 15px 30px 30px;
   text-align: center;
+  font-family: Roboto;
 
   a {
     font-weight: bold;

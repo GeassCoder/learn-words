@@ -58,4 +58,8 @@ export default {
 button.show-meta {
   margin-bottom: 15px;
 }
+
+strong {
+  font-family: arial;
+}
 </style>

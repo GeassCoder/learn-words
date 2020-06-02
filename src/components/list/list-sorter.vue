@@ -51,5 +51,6 @@ export default {
 .label-text {
   margin-right: 10px;
   font-weight: bold;
+  font-family: arial;
 }
 </style>

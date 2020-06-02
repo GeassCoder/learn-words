@@ -123,6 +123,7 @@ fieldset {
 strong {
   display: inline-block;
   margin-bottom: 10px;
+  font-family: arial;
 }
 
 input {

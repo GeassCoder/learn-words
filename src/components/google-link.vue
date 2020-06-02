@@ -25,6 +25,7 @@ export default {
 
 <style scoped lang="scss">
 .google-link {
+  font-family: Roboto;
   text-transform: capitalize;
 
   .default {

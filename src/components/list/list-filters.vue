@@ -106,6 +106,7 @@ p {
 .title {
   margin-bottom: 20px;
   font-weight: bold;
+  font-family: arial;
 }
 
 .section {
