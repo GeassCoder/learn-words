@@ -30,5 +30,9 @@ export default {
   input {
     margin: 0 6px;
   }
+
+  span {
+    font-size: 18px;
+  }
 }
 </style>

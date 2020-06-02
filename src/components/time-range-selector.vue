@@ -86,6 +86,7 @@ export default {
 
     .label-text {
       margin-right: 5px;
+      font-size: 18px;
     }
 
     &.to {

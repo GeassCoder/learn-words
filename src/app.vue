@@ -37,12 +37,12 @@ export default {
 #nav {
   padding: 15px 30px 30px;
   text-align: center;
-  font-family: Roboto;
+  font-family: arial;
 
   a {
     font-weight: bold;
     color: $black;
-    margin-right: 20px;
+    margin: 0 15px;
     text-decoration: none;
 
     &.router-link-exact-active, &:hover {
