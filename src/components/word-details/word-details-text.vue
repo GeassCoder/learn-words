@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import validateService from '@/services/validate-service.js'
 import InfoButton from '@/components/info-button.vue'
 
 export default {
@@ -43,7 +44,10 @@ export default {
   props: {
     word: {
       type: Object,
-      required: true
+      required: true,
+      validator (word) {
+        return validateService.validateWord(word)
+      }
     }
   },
   methods: {

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import utility from '@/services/utility'
+import apiService from '@/services/api-service.js'
 
 Vue.use(Vuex)
 
@@ -17,7 +18,7 @@ export default new Vuex.Store({
     // have to have this as custom events from a component cannot propagate to the grand parent.
     updatedWord: null,
     words: [
-      // TODO: remove later
+      // TODO: mock data, remove later
       {
         id: '12345',
         text: 'composite',
@@ -35,7 +36,7 @@ export default new Vuex.Store({
           lastShownTime: 1234567890123, // inited as creation time, updated on each test
           lastTestResult: 'N/A', // 'pass'/'fail'/'N/A'
           familiarity: 0, // 0-9,
-          language: 'English' // should be generated on backend? on updateWord and addWord
+          language: 'English' // TODO: should autodetect the language on updateWord and addWord?
         }
       },
       {
@@ -51,7 +52,7 @@ export default new Vuex.Store({
           lastShownTime: 1234567890123,
           lastTestResult: 'pass', // 'pass'/'fail'/'N/A'
           familiarity: 0, // 0-9
-          language: 'English' // should be generated on backend? on updateWord and addWord
+          language: 'English' // TODO: should autodetect the language on updateWord and addWord?
         }
       },
       {
@@ -67,7 +68,7 @@ export default new Vuex.Store({
           lastShownTime: 1234567890999, // inited as creation time, updated on each test
           lastTestResult: 'pass', // 'pass'/'fail'/'N/A'
           familiarity: 0, // 0-9,
-          language: 'English' // should be generated on backend? on updateWord and addWord
+          language: 'English' // TODO: should autodetect the language on updateWord and addWord?
         }
       }
     ]
@@ -97,6 +98,12 @@ export default new Vuex.Store({
       utility.replaceById(state.words, updatedWord)
 
       state.updatedWord = updatedWord
+    },
+
+    updateWords (state, words) {
+      words.forEach(word => {
+        utility.replaceById(state.words, word)
+      })
     },
 
     addWord (state, newWord) {
@@ -135,17 +142,88 @@ export default new Vuex.Store({
       commit('updateToasterTimeout', timeoutId)
     },
 
-    updateWord ({ commit }, updatedWord) {
-      // TODO: figure out the shortcut
-      commit('updateWord', updatedWord)
+    updateWord ({ commit, dispatch }, updatedWord) {
+      // TODO: test after integrating with backend
+      return apiService.updateWord(updatedWord).then(
+        () => {
+          // update global store
+          commit('updateWord', updatedWord)
+
+          // show toaster message
+          dispatch('updateToasterMessage', {
+            message: 'Word updated successfully.',
+            type: 'success'
+          })
+        },
+        error => {
+          console.error(error)
+
+          // TODO: keep it in local storage for later sync up?
+
+          // show error in toaster
+          dispatch('updateToasterMessage', {
+            message: 'Error: cannot update word.',
+            type: 'error'
+          })
+        }
+      )
     },
 
-    addWord ({ commit }, newWord) {
-      // TODO: figure out the shortcut
-      commit('addWord', newWord)
+    updateWords ({ commit, dispatch }, words) {
+      // TODO: test after integrating with backend
+      return apiService.updateWords(words).then(
+        () => {
+          // update global store
+          commit('updateWords', words)
+
+          // show toaster message
+          dispatch('updateToasterMessage', {
+            message: 'Test results synced up.',
+            type: 'success'
+          })
+        },
+        error => {
+          console.error(error)
+
+          // TODO: keep it in local storage for later sync up?
+
+          // show error in toaster
+          dispatch('updateToasterMessage', {
+            message: 'Error: cannot sync up test result.',
+            type: 'error'
+          })
+        }
+      )
+    },
+
+    addWord ({ commit, dispatch }, newWord) {
+      // TODO: test after integrating with backend
+      return apiService.addWord(newWord).then(
+        newWord => {
+          // update global store
+          commit('addWord', newWord)
+
+          // show toaster message
+          dispatch('updateToasterMessage', {
+            message: 'New Word added successfully.',
+            type: 'success'
+          })
+        },
+        error => {
+          console.error(error)
+
+          // TODO: keep it in local storage for later sync up?
+
+          // show error in toaster
+          dispatch('updateToasterMessage', {
+            message: 'Error: cannot add new word.',
+            type: 'error'
+          })
+        }
+      )
     }
   },
-  // ??
+  // TODO: may need to divide this up
   modules: {
   }
 })

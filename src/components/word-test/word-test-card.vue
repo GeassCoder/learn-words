@@ -5,12 +5,17 @@
 </template>
 
 <script>
+import validateService from '@/services/validate-service.js'
+
 export default {
   name: 'word-test-card',
   props: {
     word: {
       type: Object,
-      required: true
+      required: true,
+      validator (word) {
+        return validateService.validateWord(word)
+      }
     }
   }
 }

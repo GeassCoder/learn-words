@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import validateService from '@/services/validate-service.js'
 import Word from '@/components/word.vue'
 import GoogleLink from '@/components/google-link.vue'
 
@@ -32,7 +33,10 @@ export default {
     },
     results: {
       type: Array,
-      required: true
+      required: true,
+      validator (results) {
+        return validateService.validateWords(results)
+      }
     }
   },
   computed: {

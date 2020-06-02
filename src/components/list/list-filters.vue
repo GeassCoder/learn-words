@@ -39,6 +39,7 @@
 
 <script>
 import listService from './list-service.js'
+import validateService from '@/services/validate-service.js'
 import familiarityService from '@/services/familiarity-service.js'
 import TimeRangeSelector from '@/components/time-range-selector.vue'
 import Slider from '@/components/slider.vue'
@@ -54,9 +55,8 @@ export default {
   props: {
     value: {
       required: true,
-      // TODO: consider using json schema
       validator (value) {
-        return value instanceof Object
+        return validateService.validateFiltersModel(value)
       }
     }
   },

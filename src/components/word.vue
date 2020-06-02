@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import validateService from '@/services/validate-service.js'
 import WordDetails from '@/components/word-details/word-details-index.vue'
 import GoogleLink from '@/components/google-link.vue'
 import InfoButton from '@/components/info-button.vue'
@@ -34,7 +35,10 @@ export default {
   props: {
     word: {
       type: Object,
-      required: true
+      required: true,
+      validator (word) {
+        return validateService.validateWord(word)
+      }
     },
     theme: {
       type: String,

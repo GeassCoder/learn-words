@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import validateService from '@/services/validate-service.js'
 import Word from '@/components/word.vue'
 
 export default {
@@ -25,7 +26,10 @@ export default {
   props: {
     failedWords: {
       type: Array,
-      required: true
+      required: true,
+      validator (words) {
+        return validateService.validateWords(words)
+      }
     }
   }
 }

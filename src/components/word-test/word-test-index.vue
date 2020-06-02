@@ -70,12 +70,10 @@ export default {
       this.$emit('test-started')
     },
     endTest (result) {
-      // TODO:
       this.result = wordTestService.getProcessedResult(result, this.now)
       this.state = this.STATES.ended
       this.$emit('test-ended')
-
-      // TODO: make ajax calls to backend, and update global data store using result
+      this.$store.dispatch('updateWords', result)
     }
   }
 }

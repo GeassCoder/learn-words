@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import validateService from '@/services/validate-service.js'
 import WordDetailsText from './word-details-text.vue'
 import WordDetailsEdit from './word-details-edit.vue'
 import InfoButton from '@/components/info-button.vue'
@@ -34,7 +35,10 @@ export default {
   props: {
     word: {
       type: Object,
-      required: true
+      required: true,
+      validator (word) {
+        return validateService.validateWord(word)
+      }
     }
   },
   methods: {
@@ -45,21 +49,8 @@ export default {
       this.isEditing = false
     },
     onEditSaved (updatedWord) {
-      // TODO: make ajax call
-      // TODO: show error toaster message on error
-      // this.$store.dispatch('updateToasterMessage', {
-      //   message: 'Error: new Word cannot be added.',
-      //   type: 'error'
-      // })
-
-      this.$store.dispatch('updateWord', updatedWord)
-
-      this.$store.dispatch('updateToasterMessage', {
-        message: 'Word updated successfully.',
-        type: 'success'
-      })
-
       this.isEditing = false
+      this.$store.dispatch('updateWord', updatedWord)
     }
   }
 }

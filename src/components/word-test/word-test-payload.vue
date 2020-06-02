@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import validateService from '@/services/validate-service.js'
 import wordTestService from './word-test-service.js'
 import WordTestCard from './word-test-card.vue'
 
@@ -33,8 +34,10 @@ export default {
   props: {
     testWords: {
       type: Array,
-      required: true
-      // TODO: validator?
+      required: true,
+      validator (words) {
+        return validateService.validateWords(words)
+      }
     }
   },
   data () {

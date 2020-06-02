@@ -52,23 +52,8 @@ export default {
   },
   methods: {
     addToList (newWord) {
-      // TODO: make ajax call
-      // TODO: show error toaster message on error
-      // this.$store.dispatch('updateToasterMessage', {
-      //   message: 'Error: new Word cannot be added.',
-      //   type: 'error'
-      // })
-
-      // TODO:
-      // Note: returnedNewWord must have a server-generated id
-      // this.$store.dispatch('addWord', returnedNewWord)
-
-      this.$store.dispatch('updateToasterMessage', {
-        message: 'New word added successfully.',
-        type: 'success'
-      })
-
       this.isEditing = false
+      this.$store.dispatch('addWord', newWord)
     }
   }
 }

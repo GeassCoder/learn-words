@@ -43,6 +43,7 @@
 
 <script>
 import utility from '@/services/utility'
+import validateService from '@/services/validate-service.js'
 import wordDetailsService from './word-details-service.js'
 import InfoButton from '@/components/info-button.vue'
 
@@ -62,8 +63,7 @@ export default {
       type: Object,
       required: true,
       validator (value) {
-        // TODO: consider using json schema for validation
-        return 'text' in value
+        return validateService.validateWord(value)
       }
     }
   },

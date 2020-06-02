@@ -14,6 +14,7 @@
 
 <script>
 import listService from './list-service.js'
+import validateService from '@/services/validate-service.js'
 
 export default {
   name: 'list-sorter',
@@ -21,9 +22,8 @@ export default {
     // from v-model outside
     value: {
       required: true,
-      // TODO: consider using json schema
       validator (value) {
-        return value === '' || value instanceof Object
+        return validateService.validateSortModel(value)
       }
     }
   },

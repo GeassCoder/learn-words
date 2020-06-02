@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import validateService from '@/services/validate-service.js'
+
 export default {
   name: 'slider',
   methods: {
@@ -15,9 +17,10 @@ export default {
     }
   },
   created () {
-    // TODO: consider using json schema
-    if (!('min' in this.$attrs) || !('max' in this.$attrs) || !('value' in this.$attrs)) {
-      console.error('Missing required attribute!')
+    const isValid = validateService.validateSliderAttrs(this.$attrs)
+
+    if (!isValid) {
+      console.error('Missing required attribute!', this.$attrs)
     }
   }
 }

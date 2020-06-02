@@ -28,25 +28,25 @@
 </template>
 
 <script>
+import validateService from '@/services/validate-service.js'
+
 export default {
   name: 'time-range-selector',
   props: {
     value: {
       type: Object,
-      required: true
-      // validator (value) {
-      //   // TODO: consider using json schema for validation
-      //   return value.from && value.to
-      // }
+      required: true,
+      validator (value) {
+        return validateService.validateTimeRangeModel(value)
+      }
     },
     disabled: Boolean,
     options: {
       type: Array,
-      required: true
-      // validator (value) {
-      //   // TODO: consider using json schema for validation
-      //   return value.length
-      // }
+      required: true,
+      validator (value) {
+        return validateService.validateTimeOptions(value)
+      }
     }
   },
   data () {
