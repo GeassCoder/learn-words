@@ -1,7 +1,7 @@
 <template>
   <div class="word-test">
     <div v-if="state === STATES.notStarted" class="card">
-      <info-button @click="startTest">Start Test</info-button>
+      <info-button class="large" @click="startTest">Start Test</info-button>
     </div>
     <div v-if="state === STATES.noTest" class="no-test card">
       No need to test at this time!

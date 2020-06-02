@@ -39,6 +39,7 @@ export default {
   border: 1px solid $info-bg;
   background-color: $white;
   color: $info;
+  height: 40px;
 
   &:hover, &.active {
     background-color: $info;
@@ -51,7 +52,12 @@ export default {
   }
 
   &.small {
-    height: 30px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  &.large {
+    height: 48px;
   }
 }
 </style>
