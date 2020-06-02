@@ -1,6 +1,6 @@
 <template>
   <div id="language-selector">
-    <span>Languages:</span>
+    <span class="title">Languages:</span>
     <label v-for="language in languages" :key="language">
       <input type="checkbox" :value="language" v-model="selected"
         @change="onChange">
@@ -33,7 +33,28 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.title {
+  display: block;
+}
+
 label {
-  margin-left: 10px;
+  &:after {
+    content: '';
+    display: block;
+  }
+}
+
+@include respond-to-tablet {
+  .title {
+    display: inline;
+  }
+
+  label {
+    margin-left: 10px;
+
+    &:after {
+      display: none;
+    }
+  }
 }
 </style>

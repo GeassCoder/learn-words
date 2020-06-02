@@ -1,6 +1,6 @@
 <template>
   <fieldset class="time-range-selector">
-    <label class="date-selector">
+    <label class="date-selector from">
       <span class="label-text">from</span>
       <select v-model="from" @change="onChange">
         <option value=""></option>
@@ -12,7 +12,7 @@
         </option>
       </select>
     </label>
-    <label class="date-selector">
+    <label class="date-selector to">
       <span class="label-text">to</span>
       <select v-model="to" @change="onChange">
         <option value=""></option>
@@ -81,10 +81,23 @@ export default {
   box-shadow: none;
 
   .date-selector {
-    margin-right: 20px;
+    display: block;
+    margin-bottom: 10px;
 
     .label-text {
       margin-right: 5px;
+    }
+
+    &.to {
+      .label-text {
+        margin-right: 28px;
+      }
+    }
+
+    @include respond-to-tablet {
+      display: inline;
+      margin-right: 20px;
+      margin-bottom: 0;
     }
   }
 }

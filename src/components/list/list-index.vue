@@ -115,14 +115,14 @@ export default {
 <style scoped lang="scss">
 .language-selector {
   &.for-mobile {
-    margin: 0 0 10px 10px;
+    margin: 0 0 20px 10px;
   }
 
   &.for-above-tablet {
     display: none;
   }
 
-  @include above-tablet {
+  @include respond-to-tablet {
     &.for-mobile {
       display: none;
     }
