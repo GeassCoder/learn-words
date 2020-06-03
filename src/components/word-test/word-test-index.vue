@@ -20,7 +20,6 @@ import wordTestService from './word-test-service.js'
 import InfoButton from '@/components/info-button.vue'
 import WordTestPayload from './word-test-payload.vue'
 import WordTestResult from './word-test-result.vue'
-import { mapState } from 'vuex'
 
 export default {
   name: 'word-test',
@@ -34,7 +33,8 @@ export default {
       notStarted: Symbol('notStarted'),
       noTest: Symbol('noTest'),
       started: Symbol('started'),
-      ended: Symbol('ended')
+      ended: Symbol('ended'),
+      now: null
     }
 
     return {
@@ -44,14 +44,13 @@ export default {
       result: null
     }
   },
-  computed: mapState(['now']),
-  created () {
-    this.$store.dispatch('updateNow')
-  },
   methods: {
     startTest () {
       // save some typings
       const $state = this.$store.state
+
+      // get current time
+      this.now = Date.now()
 
       // get test words
       this.testWords = wordTestService.getTestWords(
