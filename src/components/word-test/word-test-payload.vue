@@ -36,7 +36,7 @@ export default {
       type: Array,
       required: true,
       validator (words) {
-        return validateService.validateWords(words)
+        return validateService.validateWords(words) && words.length
       }
     }
   },

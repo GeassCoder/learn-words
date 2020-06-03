@@ -47,6 +47,6 @@ export default {
   },
 
   validateWords (words) {
-    return words.length && words.every(this.validateWord)
+    return words.every(this.validateWord)
   }
 }
