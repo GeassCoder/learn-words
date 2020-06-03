@@ -3,7 +3,8 @@ import utility from '@/services/utility.js'
 
 export default {
   getTestWords (list, selectedLanguages, now) {
-    return list.filter(word => {
+    // get filtered word list
+    let result = list.filter(word => {
       const meta = word.meta
 
       const isInSelectedLanguages = (
@@ -17,7 +18,15 @@ export default {
       )
 
       return isInSelectedLanguages && isTestDue
-    }).slice(0, 50)
+    })
+
+    // at most 50 words in 1 batch
+    result = result.slice(0, 50)
+
+    // shuffle it to randomize the order
+    utility.shuffle(result)
+
+    return result
   },
 
   formatIndex (index, length) {

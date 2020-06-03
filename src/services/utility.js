@@ -31,5 +31,16 @@ export default {
     if (index > -1) {
       this.replaceByIndex(arr, index, obj)
     }
+  },
+  shuffle (array) {
+    for (let i = array.length - 1; i > 0; --i) {
+      // random index from 0 to i
+      const j = Math.floor(Math.random() * (i + 1))
+
+      // swap elements array[i] and array[j]
+      const temp = array[i]
+      array[i] = array[j]
+      array[j] = temp
+    }
   }
 }
